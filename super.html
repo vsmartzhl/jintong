@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<!-- IE=edge表示强制使用IE最新内核，chrome=1表示如果安装了针对IE6/7/8等版本的浏览器插件Google Chrome  -->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>超级正时</title>
+    <link href="/favicon.ico">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<link rel="stylesheet" href="/plugin/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css?_=20160401.15" />
+    <link rel="stylesheet" href="/css/z.css?_=20160401.15" />
+	<!--[if lte IE 9]>
+	<script src="/plugin/bootstrap/js/html5shiv.min.js"></script>
+	<script src="/plugin/bootstrap/js/respond.min.js"></script>
+	<script src="/plugin/json/json2.min.js"></script>
+	<![endif]-->
+    <script src="/plugin/encode/base64.min.js"></script>
+    <script src="/plugin/jquery/jquery.min.js"></script>
+    <script src="/plugin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugin/jquery/jquery.form.js?_=20160127.13"></script>
+</head>
+<body >
+<header style="height: 90px;">
+  <div style="margin-bottom: 20px" class="ng-scope">
+	<div class="big-screen navbar navbar-fixed-top navbar-fixed-p ng-scope" role="banner" ng-controller="HeaderCtrl" style="background: white;">
+		<div class="w ">
+			<div style="margin: 0 30px">
+				<nav id="bs-navbar" class="collapse navbar-collapse  padding-top-15 ">
+					<ul class="nav navbar-nav">
+						<li><a href="/" style="padding: 0px;"><img src="/img/full_logo.png" style="width: auto; height: 40px;"></a></li>
+					</ul>
+					<ul class="nav navbar-nav pull-right">
+						<li><div class="padding "><a class="hide" href="" name="toreportIssue"></a><span ng-dblclick="reportIssue();">客服</span>热线：400-092-1230</div></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	function clearCache() {
+		try {
+			localStorage.clear();
+			window.location.href = '/home.html?_=20160401.15';
+		} catch (e) {
+		}
+	}
+</script>
+</header>
+<div class="w" >
+	<h1> 异常情况非常规处理办法 </h1>
+	<br>
+	<p>网页没有更新、有缓存、频繁刷新？ <a class="btn btn-action" href="javascript:clearCache();"> 点我试试</a></p>
+	<br>
+	
+	<h1> 图片无法上传？ </h1>
+	<p><label>尝试从这里上传? 点击浏览选择图片，进行上传(上传过程中请勿关闭该窗口)：</label></p>
+	<form class="uploadForm" action="buyer/fileupload/file" method="post" enctype="multipart/form-data">
+		<input  type="file" accept="image/*" name="file" onchange="getFile(event)" />
+	</form>
+	<div id="imagefile"></div>
+
+</div>
+<div style="position: absolute; bottom: 80px;"> 
+</div>
+
+
+<script>
+// 添加图片上传功能
+function getFile (event){
+    var ev = event || window.event;
+    var ele = ev.target || ev.srcElement;
+    var $form = jQuery(ele).parents('form');
+    if (window.location.href.indexOf("slides") > 0) {
+		$form.attr("action", "buyer/fileupload/event");
+	}
+    function updateImageUrl(res) {
+		$form.find('.btn_box').hide();
+		var url = res.data;
+		if (!url) {
+			ZCar.log(res);
+			url = res.responseJSON && res.responseJSON.data;
+			url = url || "";
+		}
+		url = formatPartImgUrl(url) || "";
+		var $img = jQuery("#imagefile");
+		$img.html($img.html() + "<img src='" + url + "' style='max-height: 40px;'><br>link: " + url + "<br><br>");
+    }
+    $form.ajaxForm({
+        dataType:  'json',
+        success:updateImageUrl
+    }).submit();
+};
+
+// 过滤图片域名
+function formatPartImgUrl(vendor) {
+    if (typeof vendor !== "string") {
+        return vendor;
+    }
+    if(vendor.indexOf('superto.com/') == -1 && vendor.indexOf('/img/') != 0){
+        return  'http://images.superto.com' + vendor;
+    }else{
+        return vendor;
+    }
+};
+
+
+</script>
+
+<footer style="position:fixed; bottom: 0px; left: 0px; right: 0px"> 
+<div class="well padding footer">
+	<div class="w row " >
+		<div class="col-md-1  text-center nowrap"><a href="../help/relate.html#/platform">关于我们</a></div>
+		<div class="col-md-1  nwq text-center"><a href="../help/Privacy.html">隐私声明</a></div>
+		<div class="col-md-1  nwq text-center"><a href="../help/contact.html">联系我们</a></div>
+		<div class="col-md-3  col-md-offset-4 nowrap text-center">京ICP备15054806号 Copyright © 2015 北京臻势汽车科技有限公司 版权所有</div>
+	</div>
+</div>
+</footer>
+</body>
+</html>

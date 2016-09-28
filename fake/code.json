@@ -1,0 +1,15 @@
+{
+    "code": "200",
+    "message": "success",
+    "uuid": "3",
+    "data": {
+        "name": "正时汽车",
+		"images": ["/fake/img/code1.png", 
+					"/fake/img/code1.png",
+					"/fake/img/code1.png",
+					"/fake/img/code1.png",
+					"/fake/img/code1.png",
+					"/fake/img/code1.png"
+					]
+    }
+}

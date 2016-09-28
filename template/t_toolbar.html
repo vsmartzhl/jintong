@@ -1,0 +1,173 @@
+<div class="toolbar-right font" ng-class="{open: opened}" ng-controller="CartCtrl"><div class="toolbar-content">
+	<div class="toolbar-mask" ng-click="toggleOpen()"></div>
+	<div class="toolbar-tabs" ng-class="{'ng-hide': hideButtons}">
+        <div class="margin-v15 text-center"><span class="on"><img src="/img/bar-trust.png"></span><img class="off" src="/img/bar-trust-off.png"></div>
+		<div class="margin-v15 text-center"><span class="on"><img src="/img/bar-saving.png"></span><img class="off" src="/img/bar-saving-off.png"></div>
+		<div class="margin-v15 text-center"><span class="on"><img src="/img/bar-timing.png"></span><img class="off" src="/img/bar-timing-off.png"></div>
+		<div class="margin-v15 text-center" ng-if="!permited"><img src="/img/bar-cart.png"></div>
+        <a class="margin-v15" id="cart_icon" ng-if="permited" ng-click="toggleOpen()" title="购物车"><img class="on" src="/img/bar-cart.png"><img class="off" src="/img/bar-cart-off.png"><span id="cart_total"></span></a>
+      <div class="margin-top-15">
+          <a  ng-click="serviceCall()">
+              <img ng-if="!caller"  src="/img/IMA.png">
+              <img ng-if="caller"  src="/img/IMB.png">
+          </a>
+      </div>
+		<!--<div class="margin-top-15">
+			<a  ng-click="serviceCall()">
+				<img ng-if="!caller"  src="/img/qq.png">
+				<img ng-if="caller"  src="/img/blueqq.png">
+			</a>
+		</div>-->
+
+		<!--<a  class="caller" ng-if="caller"  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2355268603&site=qq&menu=yes">
+			<img src="/img/kf.png" alt="点击这里给我发消息" title="点击这里给我发消息"/>2355268603
+		</a>
+		<a  class="caller" ng-if="caller" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2355268613&site=qq&menu=yes">
+			<img src="/img/kf.png"   alt="点击这里给我发消息" title="点击这里给我发消息"/>2355268613
+		</a>
+		<a  class="caller" ng-if="caller" target="_blank"href="http://wpa.qq.com/msgrd?v=3&uin=2355268600&site=qq&menu=yes">
+			<img src="/img/kf.png"   alt="点击这里给我发消息" title="点击这里给我发消息"/>2355268600
+		</a>
+		<a  class="caller" ng-if="caller" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2355268591&site=qq&menu=yes">
+			<img src="/img/kf.png"   alt="点击这里给我发消息" title="点击这里给我发消息"/>2355268591
+		</a>-->
+        <div class="margin-v15 text-center" style="margin-top: 200px" id="goTop"><img src="/img/goTop.png" alt=""/></div>
+	</div>
+	<div class="toolbar-panel " style="font-size: 14px">
+		<div class="ng-hide" ng-show="!reloading">
+			<div class="row">
+				<div class="section-header active">
+					<img src="/img/cart.png" style="width: 20px;">
+					购物车
+					<i class="fa fa-times remove pull-right" ng-click="toggleOpen()"></i>
+				</div>
+				<div class="col-md-12 box-border">
+					<table class="table table-condensed table-hover "><thead><tr><th class="hide" width="30px"></th><th>车型</th><th>VIN码</th><th><a href="" class="btn btn-xs btn-action" ng-click="reload()">刷新</a></th></tr></thead>
+						<tbody>
+						<tr ng-class="{active: order.vid== vid}" ng-click="setCurrent(order, order.vid)" ng-repeat="order in orders" >
+							<td class="hide"><i class="fa fa-check-square-o" ng-show="order.vid== vid"></i><input type="radio" class="hide" name="selectedorder" value="{{order.cart_id}}" ng-model="vid"></td>
+							<td>{{order | formatCar}}</td>
+							<td>{{order.vin}}</td>
+							<td><a class="btn btn-link remove padding0" ng-click="toRemove(order)">删除</a></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row box-border margin-bottom-0 " collapse="collapsed" ng-if="current.vin">
+				<div class="col-md-12  " style="margin-top: 2px">
+					<h5 class="padding-v10">
+						<img src="/img/bar.png">
+						<b>当前采购清单</b>
+						<a href="" class="btn btn-xs btn-action pull-right" ng-click="selectParts()">　继续选件　</a>
+					</h5>
+					<div class="padding-h5 padding-v10">{{current | formatCar}}</div>
+					<table class="table table-condensed table-hover margin-top-20">
+						<thead>
+						<tr>
+							<th>零件编号</th>
+							<th>零件名称</th>
+							<th>数量</th>
+							<th>品级</th>
+							<th class="nowrap">操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="part in current.parts track by $index" >
+							<td><div class="ellipsis" style="width:150px;" data-placement="top-left" data-auto-Close=true data-trigger="click" bs-popover="part.pid">{{part.pid}}</div></td>
+							<td><div class="ellipsis" style="width:200px;" data-placement="top-left" data-auto-Close=true data-trigger="click" bs-popover="part.name">{{part.name}}</div></td>
+							<td><input type="text" name="num" min="1" max="{{part.max}}" style="width: 35px;" ng-change="verifyNumber(part)" ng-model="part.num" ></td>
+							<td>{{part.require | formatPart }}</td>
+							<td><a class="btn btn-link remove padding0" ng-click="toRemove(part)">删除</a></td>
+						</tr>
+						<tr ng-if="!canSubmit()" >
+							<td colspan=5 class="text-warning">还没有选择的零配件！点击右上方的“继续选购”按钮，去添加零配件吧。</td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="col-md-12" id="tbar-warnings-container"></div>
+				</div>
+
+			</div>
+			<div class="row box-border hide"> <div class="col-md-12">
+				<table class="table table-auto " ><tbody>
+				<tr>
+					<th><label class="nowrap">收货地址：</label></th>
+					<td>
+						{{(address.province + address.city + address.district + address.address)}}
+					</td>
+				</tr>
+				<tr class="hide">
+					<th><label style="margin-top: 10px;">支付方式：</label></th>
+					<td>
+						<div class="radio-list">
+							<label class="radio-inline">
+								<div class="radio"><span class="checked"><input type="radio" name="paymethod" ng-model="cart.paymethod" value=1></span></div>
+								在线支付 </label>
+							<label class="radio-inline">
+								<div class="radio"><span class=""><input type="radio" name="paymethod" ng-model="cart.paymethod" value=2 checked=""></span></div>
+								货到付款 </label>
+						</div>
+					</td>
+				</tr>
+				<!--<tr>-->
+					<!--<th><label style="margin-top: 10px;">发票要求：</label></th>-->
+					<!--<td>-->
+						<!--<div class="radio-list">-->
+							<!--<label class="radio-inline">-->
+								<!--<div class="radio"><span class="checked"><input type="radio" name="invice" ng-model="cart.invice" value=1></span></div>-->
+								<!--普通发票 </label>-->
+							<!--<label class="radio-inline">-->
+								<!--<div class="radio"><span class=""><input type="radio" name="invice" ng-model="cart.invice" value=2 checked=""></span></div>-->
+								<!--增值税发票 </label>-->
+							<!--<label class="radio-inline">-->
+								<!--<div class="radio"><span class=""><input type="radio" name="invice" ng-model="cart.invice" value=3 checked="true"></span></div>-->
+								<!--不开发票 </label>-->
+						<!--</div>-->
+					<!--</td>-->
+				<!--</tr>-->
+				</tbody>
+				</table>
+			</div></div>
+
+			<div class="col-md-7 col-md-offset-5">
+				<button type="submit" class="btn btn-action ng-invalid " ng-disabled="!canSubmit()" ng-click="submit()" title="">提　交</button>
+			</div>
+		</div>
+		<div class="" ng-if="reloading">
+			<div class="row">
+				<div class="section-header active">
+					<img src="/img/cart.png" style="width: 20px;">
+					购物车
+					<i class="fa fa-times remove pull-right" ng-click="toggleOpen()"></i>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					购物车同步中，请稍候...<br>
+					<img src="/img/loading.gif">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<script>
+		jQuery(function(){
+			jQuery("#goTop").hide();
+			jQuery(function () {
+				jQuery(window).scroll(function(){
+					if (jQuery(window).scrollTop()>0){
+						jQuery("#goTop").fadeIn();
+					}
+					else
+					{
+						jQuery("#goTop").fadeOut();
+					}
+				});
+				jQuery("#goTop").click(function(){
+					jQuery('body,html').animate({scrollTop:0},100);
+					return false;
+				});
+			});
+		});
+	</script>

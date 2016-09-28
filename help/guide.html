@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<!-- IE=edge表示强制使用IE最新内核，chrome=1表示如果安装了针对IE6/7/8等版本的浏览器插件Google Chrome  -->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>开发平台</title>
+    <link href="/favicon.ico">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<link rel="stylesheet" href="/plugin/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/plugin/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/z.css" />
+	<!--[if lte IE 9]>
+	<script src="/plugin/bootstrap/js/html5shiv.min.js"></script>
+	<script src="/plugin/bootstrap/js/respond.min.js"></script>
+	<![endif]-->
+    <script src="/plugin/jquery/jquery.min.js"></script>
+    <script src="/plugin/jquery/jquery.placeholder.min.js"></script>
+    <script src="/plugin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugin/angular/angular.min.js"></script>
+    <script src="/plugin/angular/angular-animate.min.js"></script>
+    <script src="/plugin/ionic/js/angular-ui/angular-ui-router.js"></script>
+    <script src="/plugin/angular/angular-route.min.js"></script>
+    <script src="/plugin/angular/angular-resource.min.js"></script>
+    <script src="/plugin/angular-validation/dist/angular-validation.min.js"></script>
+    <script src="/plugin/angular-validation/dist/angular-validation-rule.min.js"></script>
+	<script src="/plugin/angular-strap-master/dist/angular-strap.min.js"></script>
+	<script src="/plugin/angular-strap-master/dist/angular-strap.tpl.min.js"></script>
+</head>
+<body ng-app="starter" animation="slide-left-right-ios7">
+<script src="/js/index.js"></script>
+<script src="/js/services.js"></script>
+<script src="/js/controllers.js"></script>
+<header style="height: 70px;" data-ng-include="'/template/t_header.html'" ></header>
+<div class="w body" >
+    <div class="col-md-12 padding font-size-16">
+        <div class="row">
+            <span class="targetSign"><img src="/img/bar.png" style="margin-top: -3px"><b>首页>帮助中心</b></span>
+            <hr/>
+        </div>
+    </div>
+    <table width="100%">
+        <tr>
+            <td class="padding0 col-md-2" style="vertical-align: top;">
+                <div class="" data-ng-include="'template/t_help_menu.html'"></div>
+            </td>
+            <td class="padding0 col-md-10 font-size-12 color6" style="vertical-align: top;" >
+                <div data-ui-view=""></div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- your app's js -->
+<script src="./js/index.js"></script>
+
+
+<script src="/plugin/jquery/jquery.form.js"></script>
+<footer data-ng-include="'/template/t_footer.html'"> </footer>
+</body>
+</html>

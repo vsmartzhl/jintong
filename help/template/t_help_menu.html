@@ -1,0 +1,95 @@
+<div class="" ng-class='menu.css' ng-controller="HelpMenuCtrl">
+    <table class="table font table-bordered help-menu">
+        <thead>
+        <tr>
+            <th style="background:#1970BF;color: white ">帮助中心</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-toggle="collapse" data-target="#serviers" class="cursor" ng-click="goArrow()">
+            <td >
+                <span >
+                    <b>服务指南</b>
+                    <img ng-if="!Arrow" src="../img/x.png" alt="" style="margin-left: 90px;" />
+                    <img ng-if="Arrow" src="../img/s.png" alt="" style="margin-left: 90px;" />
+                </span>
+            </td>
+        </tr>
+        <tr  class="collapse in menu-list" ng-if="Arrow" >
+            <td>
+                <div >
+                    <a href="../help/guide.html#/register"  >注册协议</a>
+                </div>
+                <div  style="margin-left: -10px;width: 95%" >
+                <hr/>
+                </div>
+                <div ><a href="../help/guide.html#/shopping">购物流程</a></div>
+            </td>
+        </tr>
+        <tr data-toggle="collapse" data-target="#dispatching" class="cursor" ng-click="goArrow1()">
+            <td>
+                <span ><b>配送方式</b></span>
+                <img ng-if="Arrow1" src="../img/x.png" alt="" style="margin-left: 90px;"/>
+                <img ng-if="!Arrow1" src="../img/s.png" alt="" style="margin-left: 90px;"/>
+            </td>
+        </tr>
+        <tr class="collapse in menu-list" ng-if="!Arrow1" >
+            <td>
+                <div>
+                    <a href="../help/guide.html#/sendding">配送服务</a>
+                </div>
+
+                <div  style="margin-left: -10px;width: 95%" >
+                    <hr/>
+                </div>
+                <div ><a href="../help/guide.html#/received">商品验收与签收</a></div>
+            </td>
+        </tr>
+        <tr data-toggle="collapse" data-target="#after" class="cursor" ng-click="goArrow2()">
+            <td>
+                <span ><b>售后服务</b></span>
+                <img ng-if="Arrow2" src="../img/x.png" alt="" style="margin-left: 90px;"/>
+                <img ng-if="!Arrow2" src="../img/s.png" alt="" style="margin-left: 90px;"/>
+            </td>
+        </tr>
+        <tr  class="collapse in menu-list" ng-if="!Arrow2">
+            <td>
+                <div >
+                    <a href="../help/guide.html#/returnprocess">退货政策</a>
+                </div>
+                <div  style="margin-left: -10px;width: 95%" >
+                    <hr/>
+                </div>
+                <div ><a href="../help/guide.html#/description">退款说明</a></div>
+                <div  style="margin-left: -10px;width: 95%" >
+                    <hr/>
+                </div>
+                <div ><a href="../help/guide.html#/invoice">发票问题</a></div>
+            </td>
+        </tr>
+        <tr data-toggle="collapse" data-target="#pay" class="cursor" ng-click="goArrow3()">
+            <td>
+                <span ><b>支付方式</b></span>
+                <img ng-if="Arrow3" src="../img/x.png" alt="" style="margin-left: 90px;"/>
+                <img ng-if="!Arrow3" src="../img/s.png" alt="" style="margin-left: 90px;"/>
+            </td>
+        </tr>
+        <tr class="collapse in menu-list" ng-if="!Arrow3"  >
+            <td>
+                <div >
+                    <a href="../help/guide.html#/payment">支付方式</a>
+                </div>
+            </td>
+        </tr>
+        <tr class="collapse in menu-list"   >
+            <td>
+                <div >
+                    <a href="../help/guide.html#/coupon">优惠券说明</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+

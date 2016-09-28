@@ -1,0 +1,130 @@
+<style type="text/css">
+@media (max-width: 600px) {
+	.small-screen {
+		display: block !important;
+	}
+	.big-screen {
+		display: none !important;
+	}
+}
+@media (min-width: 600px) {
+	.small-screen {
+		display: none !important;
+	}
+	.big-screen {
+		display: block !important;
+	}
+}
+</style>
+<!--[if IE 9]>
+<style>
+	.small-screen {
+		display: none !important;
+	}
+	.big-screen {
+		display: block !important;
+	}
+</style>
+<![endif]-->
+<div style="margin-bottom: 20px">
+	<div class="big-screen navbar navbar-fixed-top navbar-fixed-p" role="banner" ng-controller="HeaderCtrl"  style="background: white;">
+		<div class="w ">
+			<div style="margin: 0 30px">
+				<nav id="bs-navbar" class="collapse navbar-collapse ">
+					<ul class="nav navbar-nav">
+						<li><a href="" ng-click="home()" style="padding: 0px;"><img src="/img/full_logo.png" style="width: auto; height: 40px;"></a></li>
+
+						<li class="ng-hide" ng-show="!userData.name && userData.city.length > 0">
+							<div class='form-group padding-top-15'  style="margin-left: 10px;">
+								<div class='controls'>
+									<select class='form-control' ng-model="userData.city" ng-options="city for city in cities" 
+										ng-change="cityChange(userData.city)">
+									</select>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav pull-right font-size-17 padding-top-15 " ng-if="!userData.name">
+						<li><a href="" ng-click="login()"><i class="fa fa-user margin-top-5 "> 登录</i></a></li>
+						<li><div class="padding"><a class="hide" href="" name="toreportIssue" ></a><span ng-dblclick="reportIssue();">客服</span>热线：400-092-1230</div></li>
+					</ul>
+					<div class=" padding-top-15 " ng-if="userData.name">
+						<ul class="nav navbar-nav pull-left " >
+							<li><div class="padding " style="padding-left: 25px">
+								<div id="scrollDiv" ng-if="messages">
+									<ul style="margin-left: -50px;">
+										<li class="ellipsis" ng-repeat="msg in messages">{{msg}}</li>
+									</ul>
+								</div>
+							</div></li>
+						</ul>
+						<ul class="nav navbar-nav pull-right" >
+							<li ng-if="!userData.dyy"><a href="" ng-click="goCenter()">我的正时</a></li>
+							<li class="ellipsis pull-right" style="width:115px;" ng-if="userData.dyy"><a href="" ng-click="goCenter()" title="{{userData.shop.name}}"><b > [{{userData.shop.name}}]</b></a></li>
+							<li class="ellipsis" style="width:130px;" ><a href="" ng-click="goAccount()" title="{{userData.name || userData.username}} 【{{userData.city}}】">{{userData.name || userData.username}}[{{userData.city}}]</a></li>
+							<li><a href="" ng-click="logout()">退出</a></li>
+							<li><div style="padding: 15px 0px 15px 10px"><a class="hide" href="" name="toreportIssue" ></a><span ng-dblclick="reportIssue();">客服</span>热线：400-092-1230</div></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>	
+	<div class="small-screen " role="banner" ng-controller="HeaderCtrl"  style="background: white;">
+		<div class="">
+			<div style="margin: 0 30px">
+				<nav id="bs-navbar" class="collapse navbar-collapse  padding-top-15 ">
+					<ul class="nav navbar-nav">
+						<li><a href="" ng-click="home()" style="padding: 0px;"><img src="/img/logo.png" style="width: auto; height: 40px;"></a></li>
+						<li ng-if="!userData.name"><a href="" ng-click="login()"><i class="fa fa-user margin-top-5 "> 登录</i></a></li>
+						<li ng-if="!userData.name"><div class="padding"><a class="hide" href="" name="toreportIssue" ></a><span ng-dblclick="reportIssue();">客服</span>热线：400-092-1230</div></li>
+						<li  ng-if="userData.name"><a href="" ng-click="goCenter()">我的正时</a></li>
+						<li  ng-if="userData.name"><a href="" ng-click="goAccount()">{{userData.name || userData.username}}</a></li>
+						<li  ng-if="userData.name"><a href="" ng-click="logout()">退出</a></li>
+						<li  ng-if="userData.name"><div style="padding: 15px 0px 15px 10px"><a class="hide" href="" name="toreportIssue" ></a><span ng-dblclick="reportIssue();">客服</span>热线：400-092-1230</div></li>
+					</ul>
+
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style type="text/css">
+	.navbar-nav > li > a {
+		padding: 15px 8px !important;
+	}
+	#scrollDiv {
+		max-width:300px;
+		height:25px;
+		line-height:25px;
+		overflow:hidden;
+		padding-left: 30px;
+		background: url(/img/gao.png) no-repeat
+	}
+@media (min-width: 1261px) {
+	#scrollDiv {
+		max-width:500px;
+	}
+}
+	#scrollDiv li {
+		height:25px;
+		padding-left:10px;
+	}
+</style>
+<script type="text/javascript">
+	function AutoScroll(obj){
+		if(jQuery(obj).find("li").size() < 2) {
+			return;
+		}
+		jQuery(obj).find("ul:first").animate({
+			marginTop:"-25px"
+		},500,function(){
+			jQuery(this).css({marginTop:"0px"}).find("li:first").appendTo(this);
+		});
+	}
+	jQuery(document).ready(function(){
+		setInterval('AutoScroll("#scrollDiv")', 2000)
+	});
+</script>

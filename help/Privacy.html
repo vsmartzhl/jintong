@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <!-- IE=edge表示强制使用IE最新内核，chrome=1表示如果安装了针对IE6/7/8等版本的浏览器插件Google Chrome  -->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>正时汽车</title>
+    <link href="/favicon.ico">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<link rel="stylesheet" href="/plugin/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/plugin/angular-bootstrap-nav-tree-master/dist/abn_tree.css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css?_=20160711.15" />
+    <link rel="stylesheet" href="/css/z.css?_=20160711.15" />
+	<!--[if lte IE 9]>
+	<script src="/plugin/bootstrap/js/html5shiv.min.js"></script>
+	<script src="/plugin/bootstrap/js/respond.min.js"></script>
+	<script src="/plugin/json/json2.min.js"></script>
+	<![endif]-->
+    <script src="/plugin/encode/base64.min.js"></script>
+    <script src="/plugin/jquery/jquery.min.js"></script>
+    <script src="/plugin/jquery/jquery.placeholder.min.js"></script>
+    <script src="/plugin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugin/angular/angular.min.js"></script>
+    <script src="/plugin/angular/angular-animate.min.js"></script>
+    <script src="/plugin/ionic/js/angular-ui/angular-ui-router.js"></script>
+    <script src="/plugin/angular/angular-route.min.js"></script>
+    <script src="/plugin/angular/angular-resource.min.js"></script>
+    <script src="/plugin/angular-validation/dist/angular-validation.min.js"></script>
+    <script src="/plugin/angular-validation/dist/angular-validation-rule.min.js"></script>
+	<script src="/plugin/angular-strap-master/dist/angular-strap.min.js"></script>
+	<script src="/plugin/angular-strap-master/dist/angular-strap.tpl.min.js"></script>
+	<script src="/plugin/angular-bootstrap-nav-tree-master/dist/abn_tree_directive.min.js"></script>
+    <script src="/plugin/angular-search-query-list/dist/searchQueryList.js"></script>
+</head>
+<body ng-app="starter" animation="slide-left-right-ios7">
+<header style="height: 90px;" data-ng-include="'/template/t_header.html?_=20160711.15'" ></header>
+<div class="w body ">
+    <div class="col-md-12 padding font-size-16">
+        <div class="row">
+            <span class="targetSign"><img src="/img/bar.png" style="margin-top: -3px"><b>首页>联系我们</b></span>
+            <hr/>
+        </div>
+    </div>
+    <table width="100%">
+        <tr>
+            <td class="padding0 col-md-2" style="vertical-align: top;">
+                <div style="background:#1970BF;color: white" class="bordered about-menu">隐私条款</div>
+                <div  class="bordered about-menu"><a href="" style="color:#1970BF">隐私条款</a></div>
+            </td>
+            <td class="padding0 col-md-10 color6" style="vertical-align: top;">
+                <div class="font margin-left-15">
+                    <div class="col-md-12 padding15  bordered ">
+                        <span class="font-size-15 color3"><b>隐私条款</b></span>
+                        <hr/>
+                        <table class="table t-border">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <p>正时汽车承诺尊重并保护您的隐私和个人信息安全，并且承诺尽可能地为您提供最佳服务。正时汽车会通过网站运作而收集到的这些信息，可以更好的对您的订单和账户信息进行沟通，可以更好的对您的客户服务需求进行有效调查，就正时汽车网站中会体现的商品及活动进行推广宣传、促销、优化管理、调查等项目使用。正时汽车也可以用这样的信息来阻止可能的被禁止项目和非法活动，用以加强使用规则和条款的实施，并用以解决争议和保护其合法的私有财产权益及解决涉及正时汽车的交易活动而产生的问题。</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="padding25" width="120%">
+                                    <label class="color3" >注册信息</label>
+                                    <p>当您在注册为用户时，我们要求您提供注册信息。注册信息可能要求提供您的真实姓名，地址，电话号码，身份证号、电子邮箱、您的公司的地址，电话号码和贵公司的服务和产品的简短说明等内容。我们使用注册信息来获得用户的统计资料。我们将会用这些统计数据来给我们的用户分类，以便有针对性地向我们的用户提供新的服务。</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="padding25"><label class="color3">用户名和密码</label>
+                               <p>当您注册成会员后，您会有一个用户名和密码，之后您还需提供注册手机号码以便在您丢失密码后我们可以确认您的身份。您只能通过您的密码来使用您的帐号。如果您泄漏了密码，您可能丢失了您的个人识别信息，并且可能出现对您不利的后果。因此，无论任何原因危及您的密码安全，您应该立即通过网站进行密码找回，或通过superservice@totiming.com和我们取得联系。</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="padding25">
+                                    <label class="color3">信息收集</label><br/>
+                                    <p>当您注册成会员后，您会有一个用户名和密码，之后您还需提供注册手机号码以便在您丢失密码后我们可以确认您的身份。您只能通过您的密码来使用您的帐号。如果您泄漏了密码，您可能丢失了您的个人识别信息，并且可能出现对您不利的后果。因此，无论任何原因危及您的密码安全，您应该立即通过网站进行密码找回，或通过superservice@totiming.com和我们取得联系。</p>
+                                    <p>因您交易行为而产生的其它数据，我们将会用这些统计数据来给会员分类，以便有针对性地向我们的会员提供新的服务和机会。正时汽车有可能自动接收并记录您的浏览器和计算机上的信息，其中包括您的IP地址，正时汽车cookie中的信息、软硬件特征信息、以及您需求的网页记录。</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="padding25">
+                                    <label class="color3">Cookie的使用</label><br/>
+                                    <p>cookies是少量的数据，在您未拒绝接受cookies的情况下，cookies将被发送到您的浏览器，并储存在您的计算机硬盘。我们使用cookies储存您访问我们网站的相关数据，在您访问或再次访问我们的网站时,我们能识别您的身份，并通过分析数据为您提供更好更多的服务。
+                                        您有权选择接受或拒绝接受cookies。您可以通过修改浏览器的设置以拒绝接受cookies，但是我们需要提醒您，因为您拒绝接受cookies，您可能无法使用依赖于cookies的我们网站的部分功能。
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="padding25">
+                                    <label class="color3">合理利用原则</label><br/>
+                                    <p>正时汽车保证不对外公开或向任何第三方透露您的注册信息、账户信息和交易信息，但是存在下列情形之一的除外：公开或透露相关信息之前获得您许可的;为免除您在生命、身体或财产方面之急迫危险；根据法律或政策的规定而公开或透露的；为向您提供商品或服务而需要公开或透露的；为防止他人权益之重大危害；正时汽车为保护自身利益而公开的；为增进公共利益，且无害于您的重大利益;我们发现您违反了正时汽车公司用户注册协议条款或任何其他相关服务的使用规定；根据用户注册协议其它约定而公开或透露的。</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="padding25">
+                                    <label class="color3">安全</label><br/>
+                                    <p>我们网站有相应的安全措施来确保我们掌握的信息不丢失，不被滥用和变造。这些安全措施包括向其它服务器备份数据和对用户密码加密。尽管我们有这些安全措施，但请注意在因特网上不存在“完善的安全措施”。</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="padding25">
+                                    <label class="color3">联系我们</label><br/>
+                                     <p>如果您对本隐私声明或正时汽车的隐私保护措施以及您在使用中的问题有任何意见和建议，请和我们联系：superservice@totiming.com</p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<!-- your app's js -->
+<script src="/js/zdefine.min.js?_=20160711.15"></script>
+<script src="/js/services.min.js?_=20160711.15"></script>
+<script src="/js/controllers.min.js?_=20160711.15"></script>
+<script src="/js/guide.min.js?_=20160711.15"></script>
+<footer data-ng-include="'/template/t_footer.html?_=20160711.15'"> </footer>
+</body>
+</html>

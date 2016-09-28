@@ -1,0 +1,117 @@
+<ion-view>
+    <ion-content scroll="false" padding="true">
+        <div class="row box margin-bottom-20" style="position: relative; margin-top: -20px;">
+            <!-- left开始 -->
+            <div data-ng-include="'/template/t_vin.html?_=20160203.14'" style="height: 64px" ></div>
+            <!-- left结束 -->
+            <div class="col-md-12 " >
+                <div class="row ">
+                    <div id="carousel-example-generic" class="carousel slide right-icon " data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators " id="indicators-circle">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"
+                                ng-if="!loaded"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="{{$index}}"
+                                ng-class="{active: $index==0}" ng-repeat="item in ads.slides track by $index"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item " ng-class="{active: $index==0}" ng-repeat="item in ads.slides track by $index">
+                                <div style="overflow-x:hidden;height:350px;" ng-style="{cursor: item.url ? 'pointer' : 'default'}" title="{{item.url ? '点击查看详细' : ''}}"><img style="position: absolute; left: 50%;margin-left: -960px;width:2000px; text-align: center;" ng-src="{{item.img | formatUrl}}"  ng-click="clickAds(item.url)"></div>
+                                <div class="carousel-caption"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="w body  font" id="homeContainer" style="position: relative;">
+            <div class="row vote5">
+                <div class='col-md-12 padding font-size-16'>
+                    <span ><img src="/img/bar.png" style="margin-top: -3px;"><b>采购流程</b></span>
+                </div>
+            </div>
+            <div class="row">
+                <img src="/img/buyer.png?_=20160310"  style="width: 100%;" alt=""/>
+            </div>
+            <div class="row" ng-if="loaded">
+                <div class='col-md-12' style="margin-left: -20px;">
+                    <div class='col-md-2  ' ng-repeat="item in ads.hm1 track by $index">
+                        <img class="img-thumbnail img-help "  ng-src="{{item.img | formatUrl}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-if="!loaded">
+                <div class='col-md-12' style="margin-left: -20px;">
+                    <div class="col-md-2"><img src="/img/zhengshi.png"  class="img-thumbnail img-help " alt=""/></div>
+                    <div class="col-md-2"><img src="/img/zhengshi.png" class="img-thumbnail img-help " alt=""/></div>
+                    <div class="col-md-2"><img src="/img/zhengshi.png" class="img-thumbnail img-help " alt=""/></div>
+                    <div class="col-md-2"><img src="/img/zhengshi.png"   class="img-thumbnail img-help " alt=""/></div>
+                    <div class="col-md-2"><img src="/img/zhengshi.png" class="img-thumbnail img-help "  alt=""/></div>
+                    <div class="col-md-2"><img src="/img/zhengshi.png"  class="img-thumbnail img-help " alt=""/></div>
+
+                </div>
+            </div>
+
+            <div class="row vote5">
+                <div class='col-md-12  font-size-16' style="padding: 10px 15px 0px 15px;">
+                    <span><img src="/img/bar.png" style="margin-top: -3px;" ><b>供货流程</b></span>
+                </div>
+            </div>
+            <div class="row">
+                <img src="/img/seller.png" style="width: 100%;" alt=""/>
+            </div>
+            <div class="row" ng-if="loaded">
+                <div class='col-md-12'  style="margin-left: -20px;">
+                    <div class='col-md-2' ng-repeat="item in ads.hm2 track by $index">
+                        <img class="img-thumbnail img-help"  ng-src="{{item.img | formatUrl}}" onerror="this.src='/img/notfount.png', this.title='图片找不到'">
+                    </div>
+
+                </div>
+            </div>
+            <div class="row" ng-if="!loaded">
+                <div class='col-md-12' style="margin-left: -20px">
+                    <div class="col-md-2"><img src="/img/zhengshi.png"  class="img-thumbnail img-help " alt=""/></div>
+                    <div class="col-md-2"><img src="/img/zhengshi.png" class="img-thumbnail img-help " alt=""/></div>
+                    <div class="col-md-2"><img src="/img/zhengshi.png" class="img-thumbnail img-help " alt=""/></div>
+                    <div class="col-md-2"><img src="/img/zhengshi.png"   class="img-thumbnail img-help " alt=""/></div>
+                    <div class="col-md-2"><img src="/img/zhengshi.png" class="img-thumbnail img-help "  alt=""/></div>
+                    <div class="col-md-2"><img src="/img/zhengshi.png"  class="img-thumbnail img-help " alt=""/></div>
+
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            // 激活页面右上角的轮播图
+            jQuery(".carousel").carousel();
+            jQuery(function(){
+                setLW();
+            });
+
+            var setLW = function(){
+                /*var marginL = (jQuery(window).width()-jQuery(".w").width())/2;*/
+                var marginL = jQuery(".w").offset().left+37;
+                jQuery("#vinForm").css({
+                    "position":"absolute",
+                    "z-index":"10",
+                    "left":marginL
+                });
+                jQuery('#indicators-circle').css({
+                    "position":"absolute",
+                    "right":marginL+60
+                })
+
+            };
+
+
+            window.onresize = function(){
+                setLW();
+            }
+
+        </script>
+    </ion-content>
+</ion-view>
