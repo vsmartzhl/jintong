@@ -1,0 +1,38 @@
+<div ng-controller="HeaderCtrl">
+<div class="well padding0"><div class="container">
+    <div class="navbar-header">
+		<a class="navbar-brand" href="/" onclick="reopen()"><img class="fa" src="/common/img/logo.png" style="width: auto; height: 24px;"></a>
+    </div>
+	<ul class="nav navbar-nav pull-right" ng-if="!userData.name">
+		<li class=""><a href="/user/login.html" onclick="reopen()"><i class="fa" > 登录</i></a></li>
+		<li class="pull-right"><a href="/user/register.html" onclick="reopen()"><i class="fa"> 注册</i></a></li>
+	</ul>
+	<ul class="nav navbar-nav pull-right" ng-if="userData.name">
+		<li class="padding">{{userData.name || userData.username}}</li>
+		<li><a href="" ng-click="logout()">退出</a></li>
+	</ul>
+</div></div>
+<div class="container">
+	<div class="row">
+	  <div class="col-md-4">
+		<a class="navbar-brand" href="/" onclick="reopen()"><img class="fa" src="/common/img/logo.png" style="width: auto; height: 24px;"></a>
+	  </div>
+	  <div class="col-md-8">
+			<form name="loginForm" class='form form-horizontal form-validation padding' ng-valid ng-invalid ng-submit="login()">
+				<div class="form-body">
+					<div class='form-group row-validator'>
+		<div class="input-group">
+		  	<input type='text' class='form-control' name="search" ng-model="user.search" placeholder="服务">
+			<span class="input-group-btn">
+			<button class="btn btn-primary" style="width: 120px;" type="button" onclick="javascript:decodeTS()"> 搜索 </button>
+		  </span>
+		  <span class="input-group-btn" style="padding-left: 60px;">
+			<button class="btn btn-action" type="button" onclick="javascript:encodeTS()">创建服务</button>
+		  </span>
+		</div>
+	  </div>
+	</div>
+</div>
+</div>
+
+

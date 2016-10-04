@@ -1,0 +1,17 @@
+{
+    "status": {
+		"status_code": "200",
+		"status_message": "OK"
+	},
+    "content": {
+        "id": "1",                   
+        "user_name": "13800138000",            
+        "mobile": "13800138000",     
+        "email": "123456@qq.cpom",  
+        "user_type": 0,             
+        "gid": "100001",            
+        "orgId": "100001",           
+        "passport": "13800138000",   
+        "memo": ""                   
+    }
+}

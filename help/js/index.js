@@ -1,24 +1,17 @@
 // register router for Account
 moduleI.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
     $stateProvider
-        .state("Register", {
-            url: "/register",
+        .state("default", {
+            url: "/*",
             template: function() {
-                return getHtml("t_help_register");
+                return getHtml("/help/template/t_help_blank");
             },
             controller: "RegisterCtrl"
         })
         .state("Description", {
             url: "/description",
             template: function() {
-                return getHtml("../help/template/t_help_description");
-            },
-            controller: "HelpMenuCtrl"
-        })
-        .state("Service", {
-            url: "/service",
-            template: function() {
-                return getHtml("t_service");
+                return getHtml("/help/template/t_help_description");
             },
             controller: "HelpMenuCtrl"
         });

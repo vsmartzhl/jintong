@@ -1,0 +1,102 @@
+<style>
+	.absofoot{ position: absolute; bottom: 0; width: 100%; z-index: -1;}
+</style>
+
+<div class="footer clearfix" id="footbox" ><div class="container" >
+	<div class="font-color font " >
+		<div class="row footer-style  margin-top-40 " >
+			<div class="col-md-2 text-left">
+				<span class="font-size-18">新手上路</span>
+				<p class="  font-line margin-top-7 menu-lists">
+					<a href="../help/guide.html#/register" target="_blank" role="btn btn-link">• 新手指南</a><br>
+					<a href="../help/guide.html#/shopping" target="_blank" role="btn btn-link">• 免费试用</a><br>
+					<a href="../help/guide.html#/shopping" target="_blank" role="btn btn-link">• 服务分类</a><br>
+					<a href="../help/guide.html#/shopping" target="_blank" role="btn btn-link">• 挑选服务</a><br>
+				</p>
+			</div>
+			<div class="col-md-2 text-left">
+				<span class="font-size-18">购买流程</span>
+				<p class="  font-line margin-top-7 menu-lists">
+					<a href="../help/guide.html#/register" target="_blank" role="btn btn-link">• 购买服务</a><br>
+					<a href="../help/guide.html#/shopping" target="_blank" role="btn btn-link">• 升级/续费</a><br>
+					<a href="../help/guide.html#/shopping" target="_blank" role="btn btn-link">• 订购记录</a><br>
+				</p>
+			</div>
+			<div class="col-md-2 text-left">
+				<span class="font-size-18">使用帮助</span>
+				<p class="  font-line margin-top-7 menu-lists">
+					<a href="../help/guide.html#/register" target="_blank" role="btn btn-link">• 服务期限</a><br>
+					<a href="../help/guide.html#/shopping" target="_blank" role="btn btn-link">• 服务取消</a><br>
+					<a href="../help/guide.html#/shopping" target="_blank" role="btn btn-link">• 服务商入驻</a><br>
+				</p>
+			</div>
+			
+			<div class="col-md-5 col-md-1-offset text-left ">
+				<span class="font-size-18">联系我们</span>
+				<p class="color9">地址：北京市朝阳区大屯路科学园南里风林西奥中心A座11层</p>
+				<p class="color9">固定电话：010-56997699</p>
+				<p class="color9">E-mail：kf@totiming.com</p>
+			</div>
+
+		</div>
+
+	</div>
+	<div class="row " >
+		<div class='col-md-1 nowrap'></div>
+	</div>
+	<div class="row " >
+		<div class='col-md-12 text-right nowrap'>Copyright @2016 金桐（北京）有限公司 版权所有</div>
+	</div>
+</div></div>
+
+<script type="text/ng-template" id="/tpl_confirm.html">
+	<div class="modal" style="width: 500px; margin-left: auto; margin-right: auto;" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog" style="width: 480px; position:fixed; top: 30%;">
+	    <div class="modal-content" movable>
+	      <div class="modal-header" ng-show="mtitle">
+	        <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
+	        <h3 class="modal-title " ng-bind="mtitle"></h3>
+	      </div>
+	      <div class="modal-body"><div ng-class="mtitle? '' : 'padding-v15'" ng-bind-html="content"></div></div>
+	      <div class="modal-footer" style="border-top: none;padding-top: 0;" ng-if="action=='remove'">
+	        <button type="button" class="btn btn-danger" ng-click="doRemove();$hide();">继续删除</button>
+	        <button type="button" class="btn btn-default" ng-click="$hide()">取消</button>
+	      </div>
+	      <div class="modal-footer" style="border-top: none;padding-top: 0;" ng-if="action=='cancel'">
+	        <button type="button" class="btn btn-danger" ng-click="doCancel();$hide();">{{ btnConTxt || "继续取消"}}</button>
+	        <button type="button" class="btn btn-default" ng-click="$hide()">关闭</button>
+	      </div>
+	      <div class="modal-footer" style="border-top: none;padding-top: 0;" ng-if="action=='confirm'">
+	        <button type="button" class="btn btn-action" ng-click="doConfirm();$hide();">确定</button>
+	        <button type="button" class="btn btn-default" ng-click="$hide()">取消</button>
+	      </div>
+	      <div class="modal-footer" style="border-top: none;padding-top: 0;" ng-if="action=='confirmPrice'">
+	        <button type="button" class="btn btn-action" ng-click="doConfirm();$hide();">确定</button>
+	      </div>
+	      <div class="modal-footer" style="border-top: none;padding-top: 0;" ng-if="action=='closeWin'">
+	        <button type="button" class="btn btn-default" onclick="ZCar.refreshParent(true);">关闭窗口</button>
+	      </div>
+			<div class="modal-footer" style="border-top: none;padding-top: 0;" ng-if="action=='docancel'">
+				<button type="button" class="btn btn-danger" ng-click="doCancel();$hide();">{{ btnConTxt || "继续取消"}}</button>
+				<button type="button" class="btn btn-default" ng-click="$hide()">不取消</button>
+			</div>
+	    </div>
+	  </div>
+	</div>
+</script>
+<script type="text/ng-template" id="/tpl_info.html">
+	<div class="modal modal-info" style="width: 500px; margin-left: auto; margin-right: auto;" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog" style="width: 480px; position:fixed; top: 30%;">
+	    <div class="modal-content" movable>
+	      <div class="modal-header" ng-show="mtitle">
+	        <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
+	        <h3 class="modal-title" ng-bind="mtitle"></h3>
+	      </div>
+	      <div class="modal-body"><div ng-class="mtitle? '' : 'padding-v15'" ng-bind-html="content"></div></div>
+	      <div class="modal-footer" style="border-top: none;padding-top: 0;">
+	        <button type="button" class="btn btn-action  btn-default" ng-click="$hide()">确定</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</script>

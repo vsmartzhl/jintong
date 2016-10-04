@@ -1,42 +1,14 @@
-
-var lib3parts = {"moduleC": ['ngAnimate', 'ui.router'], "moduleS": ['ngResource'], "moduleI": ['starter.controllers', 'starter.services']};
+var _moduleC = ['ngAnimate', 'ui.router', 'validation', 'mgcrea.ngStrap'];
 if (window.location.href.indexOf("/h5/") > 0) {
-	lib3parts["moduleS"].push('validation');
-	lib3parts["moduleS"].push('mgcrea.ngStrap');
-	lib3parts["moduleI"].push('ionic');
-} else {
-	lib3parts["moduleC"].push('validation');
-	lib3parts["moduleC"].push('mgcrea.ngStrap');
+	_moduleC.push('ionic');
 }
 
-var moduleC = angular.module('starter.controllers', lib3parts["moduleC"]);
-var moduleS = angular.module('starter.services', lib3parts["moduleS"]);
-var moduleI = angular.module('starter', lib3parts["moduleI"]);
+var moduleC = angular.module('starter.controllers', _moduleC);
+var moduleS = angular.module('starter.services', ['ngResource']);
+var moduleI = angular.module('starter', ['starter.controllers', 'starter.services']);
 
-
-// ignore console error for IE8,9
 var now = new Date();
 var zcarVersion = 20160711.15;
-var urlMap = {
-	"login": "user/login/index",
-	"logout": "user/login/logout",
-	"allow": "User/Moduleschecker/index",
-	"getCode": "user/Login/code",
-	"sendSms": "user/Password/getcode",
-	"resetPwd": "user/Password/index",
-	"getAdList": "data/home.json",
-	"home": "fake/home.json",
-	"aliDopay": "pay/ali/pay",
-	"getDeliveryInfo": "http://l.superto.com/dispatch/terraceorder/getDeliveryInfo",
-	"getNoticelist": "user/notice/noticelist",
-	"getNoticelistDetail": "user/notice/noticedetail",
-	"changeModulePwd": "User/Moduleschecker/passwordedit",
-	"getConfig":"buyer/getcon/getconfig",
-	
-    "zsLogin": "user/login/operate"
-
-}
-
 
 
 /**
@@ -127,20 +99,6 @@ var ZCar = function() {
         * 
         */
         getUName : function() {
-			var now = (new Date()) - 0;
-            var timeout = now - __cache("last-login");
-			// 8小时=8*3600秒  28800000, 10分钟 = 600秒
-			if (timeout > 28800000 && location.href.indexOf("#/login") < 0) {
-				if (now - __cache("last-accessed") > 72000000) {
-					// 登录超过20小时，清除缓存
-					clearStorage();
-					return "";
-				}
-				if (now - __cache("last-accessed") > 600000) {
-					// 登录超过8小时，并且10分钟内没有操作，强制重新登录
-					return ZCar.gotoLogin("登录时间过长! 为了保证账户安全，请重新登录后再继续操作。");
-				}
-			}
             return uname || __cache("active_uname") || "";
         },
         
@@ -207,7 +165,7 @@ var ZCar = function() {
 				window.localStorage.setItem("href", location.href);
 				ZCar.data("goto_login_reason", redirect);
 			}
-			ZCar.openInside("/home.html#/login", true);
+			ZCar.openInside("/user/login.html", true);
         },
         
         /**
@@ -470,7 +428,7 @@ var ZCar = function() {
             } catch(e){};
             
             msg = "[" + line + "] " + (msg || "");
-            msg += (obj ? " data: " + this.stringify(obj) : "") + (obj2 ? " data: " + this.stringify(obj2) : "");
+            msg += (obj ? " data: " + JSON.stringify(obj) : "") + (obj2 ? " data: " + JSON.stringify(obj2) : "");
             console.log("At " + (new Date() - 0) + " " + msg);
         },
         
@@ -694,7 +652,7 @@ function getHtml(name) {
     if (!zfiles.template[name]) {
        // 同步ajax请求加载html，并缓存
        try {
-		   var content = jQuery.ajax({url: "/template/" + name + ".html?_=" + zcarVersion, async: false}).responseText;
+		   var content = jQuery.ajax({url: name + ".html?_=" + zcarVersion, async: false}).responseText;
 		   if (content && content.indexOf("t_menu.html") > 0) {
 			   content = content.replace(/(\/t_menu.html[^>]*)(..>)/gi, "/t_menu.html?_=" + zcarVersion + "$2");
 		   }
@@ -712,28 +670,16 @@ moduleI.config(["$provide", "$httpProvider", "$stateProvider", "$validationProvi
     $validationProvider.setErrorHTML(function (msg) {
         // remember to return your HTML
         // <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-        return '<small class="text-danger">' + msg + '</small>';
+        return '<small class="text-danger clearfix">' + msg + '</small>';
     });
     angular.extend($validationProvider, {
         validCallback : function(element, message) {
-            element.addClass('has-success').removeClass('has-error has-feedback');
-			/*
-            var $parent = element.parent();
-            while (!$parent.hasClass("form-group")) {
-                $parent = $parent.parent();
-            }
+            var $parent = element.closest(element.attr("valid-section") || "div");
             $parent.addClass('has-success').removeClass('has-error has-feedback');
-			*/
         },
         invalidCallback : function(element, message) {
-            element.addClass('has-error has-feedback').removeClass('has-success');
-			/*
-            var $parent = element.parent();
-            while (!$parent.hasClass("form-group")) {
-                $parent = $parent.parent();
-            }
+            var $parent = element.closest(element.attr("valid-section") || "div");
             $parent.addClass('has-error has-feedback').removeClass('has-success');
-			*/
         }
     });
 
@@ -761,23 +707,23 @@ moduleI.config(["$provide", "$httpProvider", "$stateProvider", "$validationProvi
 			}
             return false;
         },
+        "account" : function(value, scope, element, attrs, param) {
+			return(/^(0|86|17951)?(1[3-8][0-9])\d{8}$/.test(value) || /^[^\s\t@]+@[^\s\t@]+\.[^\s\t@]+$/.test(value));
+        },
         "password" : function(value, scope, element, attrs, param) {
-			if (!value) {
+			if (!value || value.length < 6 || value.length > 20) {
 				return false;
 			}
 			
-			// 密码验证规则/^(?=.*\d)(?=.*[a-zA-Z])[\da-zA-Z]{6,16}$/ 
 			if (param) {
 				return false;
 			}
-			var reg = /^[\da-zA-Z]{6,16}$/g;
-			if(!reg.test(value)) {
+			// 纯数字或字母的无效
+			var reg = /(^\d+$|^[a-zA-Z]+$|^[^\da-zA-Z]+$)/g;
+			if(reg.test(value)) {
 				return false;
 			}
-			reg = /(\d[a-zA-Z]|[a-zA-Z]\d)/g;
-			if(!reg.test(value)) {
-				return false;
-			}
+			
             return true;
         }
     };
@@ -791,13 +737,17 @@ moduleI.config(["$provide", "$httpProvider", "$stateProvider", "$validationProvi
         "min" : { error : '所填数值小于最小值' },
         "max" : { error : '所填数值大于最大值' },
         "equal" : { error : '内容不一致' },
-        "password" : { error : '密码必须是6~16位的数字和字母组合' },
+        "account" : { error : '手机号或邮箱格式不正确' },
+        "password" : { error : '密码必须是6-20位字母、数字以及特殊符号的至少2种的组合' },
         "required" : { error : '' } 
     };  // 必须项目
 
     $validationProvider.setExpression(_extendsExpression).setDefaultMsg(_extendsValidMsg);
 }]);
-
+// 单页面响应点击重读事件
+function reopen() {
+	window.location.href = $(this).attr("href") || window.location.href;
+}
 moduleI.run(["$rootScope", "$state", "$location", "$document", "$animate", "$modal", "$alert", "$window", "$http", "$q", "$timeout",function($rootScope, $state, $location, $document, $animate, $modal, $alert, $window, $http, $q, $timeout) {
     
 	$rootScope.noProgressURL = ",getConfig," + 
@@ -844,18 +794,16 @@ moduleI.run(["$rootScope", "$state", "$location", "$document", "$animate", "$mod
 				}
 			}
 			//$rootScope.busy.show(config.params.uuid, "");
-			res.failed = (data.code && "" + data.code !== "200");
+			res.failed = (data.status && "" + data.status.status_code !== "200");
+			
             if (!res.failed) {
 				// 只有有效data字段时，才返回该字段。
-				if (res.data) {
-					for (var i in res.data) {
-						data = res.data;
-						break;
-					}
+				if (res.content) {
+					data = res.content;
 				}
 				ZCar.log("got response for " + config.url + ".", ZCar.copy(res, ["uuid", "code", "message"]));
             } else {
-				data.code = "" + data.code;
+				data.code = "" + data.status.status_code;
 				if (data.code == "3007" || "" + data.code == "9903") {
 					ZCar.gotoLogin("监测到账户异常，为保护您的信息安全，请重新登录！");
 					return;
@@ -919,7 +867,7 @@ moduleI.run(["$rootScope", "$state", "$location", "$document", "$animate", "$mod
 			warning = !json.noalert;
 			delete json.noalert;
 		}
-        var config = {"warning": warning, "method": "GET", "url": "/" + (urlMap[url] || url || "")};
+        var config = {"warning": warning, "method": "GET", "url": (url || "/")};
         var params = "";
         for (var i in json) {
             if (i == "$$hashKey") continue;
@@ -937,7 +885,7 @@ moduleI.run(["$rootScope", "$state", "$location", "$document", "$animate", "$mod
 			warning = !json.noalert;
 			delete json.noalert;
 		}
-        return sendRequest({"warning": warning, "method": "POST", "url": "/" + (urlMap[url] || url || ""), "data": json || {}}, success, error, retried);
+        return sendRequest({"warning": warning, "method": "POST", "url": (url || "/"), "data": json || {}}, success, error, retried);
     };
 	
     $rootScope.refreshFunctions = {};
@@ -1165,3 +1113,14 @@ if (!String.prototype.trim) {
 		return this.replace(/^\s+/, '').replace(/\s+$/, '');
 	};
 }
+
+
+moduleI.filter('formatUrl', function() {
+    return function(content) {
+        if (!content) {
+            return content;
+        }
+		return content.replace(/\\/gi, "/").replace(/\#/gi, "%23");
+    }
+});
+

@@ -1,0 +1,224 @@
+
+// 
+moduleI.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+	var html_path = "/user/template/";
+	function mapping(url, crontroller, template) {
+		return {"url": url, "template": function() {return getHtml(html_path + template); }, "controller": crontroller};
+	}
+	// 用户登录相关设置
+	if(location.pathname.indexOf("/login.html") > -1) {
+		$stateProvider.state('default', mapping("", 'LoginCtrl', "t_login"));
+		$stateProvider.state('login', mapping("/", 'LoginCtrl', "t_login"));
+	}
+	// 用户注册相关设置
+	if(location.pathname.indexOf("/register.html") > -1) {
+		$stateProvider.state('default', mapping("", 'RegisterCtrl', "t_login"));
+		$stateProvider.state('register', mapping("/", 'RegisterCtrl', "t_login"));
+	}
+  $stateProvider
+	.state("slides", {
+	  url: "/register",
+	  template: function() { 
+		return getHtml(html_path + "t_login"); 
+	  },
+	  controller: "LoginCtrl"
+	});
+}]);
+
+moduleC.controller('RegisterCtrl', ['$location','$rootScope', '$scope', '$state','$stateParams', '$timeout', 'User', 'Code', function($location, $rootScope, $scope, $state,$stateParams, $timeout, User, Code) {
+	$scope.action = "register";
+	$scope.user	= {password: "", uname: "", error: "", code: "", sms: "", mobile: ""};
+	$scope.userData = User.getUserData(); //获取缓存的登录信息
+	$scope.images = null; 
+	$scope.hint = "";	
+	document.title = "开放平台-注册";
+	
+	$scope.vcode = {title: "获取验证码", sent: false, clickable: true, experied: false, "max-limit": 60, limit: 60}; // limit: timeout 1 minutes
+	
+	// 校验手机号和发送状态，控制发送按钮有效无效状态
+	$scope.isClickable = function isClickable() {
+		if (!$scope.vcode.clickable) {
+			return false;
+		}
+		return (/^(0|86|17951)?(1[3-8][0-9])\d{8}$/.test($scope.user.uname) || /^[^\s\t@]+@[^\s\t@]+\.[^\s\t@]+$/.test($scope.user.uname));
+	}
+	
+	// 校验码输入后，是否能点击下一步按钮
+	$scope.nextable = function nextable() {
+		return $scope.user.sms.length == 6;
+	}
+	
+	// 触发获取短信校验码请求
+	$scope.sendCode = function sendCode() {
+		if(ZCar.guard("sendCode")) {
+			return;
+		}
+		if (!$scope.isClickable()) {
+			return;
+		}
+		
+		Code.sendSms({"mobile": $scope.user.uname}, function(res) {
+            if (res.failed) {
+                $scope.user.error = res.code;
+            } else {
+				$scope.vcode.clickable = false;
+				$scope.vcode.sent = true;
+				(function countdown() {
+					if ($scope.vcode.limit < 1) {
+						$scope.vcode.clickable = true;
+						$scope.vcode.limit = $scope.vcode["max-limit"];
+						$scope.vcode.title = "再次发送验证码";
+					} else {
+						$scope.vcode.limit -= 1;
+						$scope.vcode.title = $scope.vcode.limit + "秒后再次发送验证码";
+						$timeout(countdown, 1000);
+					}
+				})();
+			}
+		});
+		$scope.user.password = "";
+		$scope.user.password2 = "";
+	};
+	
+	//点击登录按钮激活login
+	$scope.register = function register(){
+		if(ZCar.guard("register")) {
+			return;
+		}
+		User.register($scope.user, function(res) {
+            if (res.failed) {
+				switch(res.code + "") {
+					case '3229':
+						$scope.user.error = "账号被冻结！";
+						break;
+					default:
+						$scope.user.error = res.message;
+						break;
+				}
+				// 验证码错误，重新获取
+				//$scope.getCodes();
+            } else {
+                $scope.user.error = "";
+				ZCar.openInside("/user/login.html", true);
+            }
+        });
+	}
+
+}]);
+
+moduleC.controller('LoginCtrl', ['$location','$rootScope', '$scope', '$state','$stateParams', '$timeout', 'User', 'Code', function($location, $rootScope, $scope, $state,$stateParams, $timeout, User, Code) {
+	$scope.action = "login";
+	$scope.user	= {password: "", uname: "", error: "", code: "", sms: "", mobile: ""};
+	$scope.userData = User.getUserData(); //获取缓存的登录信息
+	$scope.images = null; 
+	$scope.hint = "";
+	document.title = "开放平台-登录";
+	
+	
+	var reason = ZCar.data("goto_login_reason");
+	if (reason && typeof reason == "string" && reason.trim() != "") {
+		ZCar.data("goto_login_reason", null);
+		$scope.alerts = reason;
+		$timeout(function() {ZCar.logout();}, 100);
+	}
+	
+	//点击登录按钮激活login
+	$scope.login = function login(){
+		if(ZCar.guard("login")) {
+			return;
+		}
+		User.login($scope.user, function(res) {
+            if (res.failed) {
+				switch(res.code + "") {
+					case '3201':
+						$scope.user.error = "用户不存在！";
+						break;
+					case '3202':
+					case '3208':
+						$scope.user.error = res.code + "";
+						break;
+					case '3229':
+						$scope.user.error = "账号被冻结！";
+						break;
+					default:
+						$scope.user.error = res.message;
+						break;
+				}
+				// 验证码错误，重新获取
+				//$scope.getCodes();
+            } else {
+                $scope.user.error = "";
+                var href = ZCar.data("href");
+                if (href && typeof href == "string") {
+                    // 如果由需要登录转来登录，返回到元页面
+                    ZCar.data("href", "");
+                } else {
+                    href = "/";
+                }
+				ZCar.openInside(href, true);
+            }
+        });
+	}
+
+
+	
+	// 发送变更请求
+	$scope.resetPwd = function resetPwd() {
+		if(ZCar.guard("resetPwd")) {
+			return;
+		}
+		User.resetPwd($scope.user, function(res) {
+            if (("" + res.code) != "200") {
+                $scope.user.error = res.code;
+				// 验证码错误，重新获取
+				if ($scope.user.error == "3208") {
+					$scope.user.sms = "";
+				}
+				if ($scope.user.error == "3203") {
+					$rootScope.alert("密码修改失败！\n请联系客服进行密码重置！");
+				} else {
+					$scope.go("forgot");
+				}
+            } else {
+                $scope.user.error = "";
+				$scope.go("success");
+            }
+			$scope.user.mobile = "";
+			$scope.user.sms = "";
+			$scope.user.uname = "";
+			$scope.user.code = "";
+			$scope.user.password = "";
+			$scope.user.password2 = "";
+        });
+	}
+	
+    // 点击事件，用于切换视图
+    $scope.go = function go(step) {
+        $scope.action = step;
+		
+		$scope.user.password = "";
+    };
+}]);
+
+
+
+// verify Code Service 
+moduleS.factory("Code", ["$rootScope", "$http", function($rootScope, $http) {
+    var items = null;
+    return {
+        load: function(callback) {
+			$rootScope.sendGet("getCode", {}, function(res, status, headers, config) {
+					return ZCar.doCallback(res, callback);
+				}, function(res, status, headers, config) {
+					return ZCar.doCallback(res, callback);
+				}, 3);
+        }, 
+        sendSms: function(data, callback) {
+			data.mobile = Base64.encode(data.mobile);
+			$rootScope.sendPost("/code/send", data, function(res, status, headers, config) {
+				return ZCar.doCallback(res, callback);
+			});
+        }
+    }
+}]);
+

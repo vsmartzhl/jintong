@@ -1,0 +1,257 @@
+<ion-view>
+<ion-content scroll="false" padding="true">
+<div class="container" ng-if="action=='register'">
+	<div class="padding">
+		<h3 class="text-left">账户注册</h3>
+		<hr class="row">
+		<div class="register-form">
+			<form name="loginForm" class='form form-horizontal form-validation padding' ng-valid ng-invalid ng-submit="register()">
+				<div class="form-body">
+					<div class='form-group row-validator'>
+						<div class='controls'>
+							<input type='text' class='form-control icon-in icon-in-user' name="uname" ng-model="user.uname"
+								  validator="required, account" required-error-message="请输入注册用的手机号或邮箱" valid-method="blur" title="手机号/邮箱" placeholder="手机号/邮箱">
+						</div>
+						<div class='controls  '>
+							<small class="text-danger" ng-if="user.error.indexOf('32') != 0">{{user.error}}</small>
+						</div>
+					</div>
+
+					<div class='form-group row-validator'>
+						<div class='input-group '>
+							<input type='text' class='form-control' name="sms" ng-model="user.sms" maxlength=6 title="验证码" placeholder="验证码">
+							<span class="input-group-btn"> <a class="btn btn-action" style="width: 180px;" ng-disabled="!isClickable()" ng-click="sendCode()"> {{vcode.title}} </a></span >
+						</div>
+						<div class='controls  '>
+							<small class="text-danger" ng-if="user.error == '3202'">验证码错误！</small>
+						</div>
+					</div>
+					
+					<div class='form-group row-validator'>
+						<div class='controls '>
+							<input type='password' class='form-control icon-in icon-in-password' name="password" ng-model="user.password"
+								   validator="password,required" password-error-message="密码必须是6-20位字母、数字以及特殊符号的组合！" required-error-message="请输入密码" valid-method="submit" title="密码" placeholder="密码: 6-20位字母、数字以及特殊符号的至少2种的组合">
+						</div>
+						<div class='controls  '>
+							<small class="text-danger" ng-if="user.error == '3202'">密码错误！</small>
+						</div>
+					</div>
+					
+					<div class='form-group row-validator'>
+						<div class='controls '>
+							<input type='password' class='form-control icon-in icon-in-password' name="password2" ng-model="user.password2" placeholder="请再次输入密码"
+								   validator="equal" equal='{{user.password}}' equal-error-message="两次输入的密码不匹配" valid-method="blur" title="请再次输入密码" placeholder="请再次输入密码">
+						</div>
+					</div>
+				</div>
+
+				<div class='form-actions margin-top-20' >
+					<div class="row">
+					<button type="submit" class="btn btn-lg btn-action col-md-12" validation-submit="loginForm" ng-disabled="user.sms.length < 6" ng-click="register()" title="">
+						　注 册　
+					</button>
+					</div>
+				</div>
+			</form>
+			<div style="margin-bottom: 50px;">
+				<div class='pull-left'>
+					<a class='' href="/user/register.html"> 收不到验证码？ </a>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<div class="bg_login" ng-if="action=='login'"> <div class="container">
+	<div class="login-form">
+		<div class="alert am-fade alert-danger" ng-if="alerts && alerts.length > 0" >{{alerts}}</div>
+		<div class="padding">
+			<h3 class="text-left">账户登录</h3>
+			<hr class="row">
+			<form name="loginForm" class='form form-horizontal form-validation padding' ng-valid ng-invalid ng-submit="login()">
+				<div class="form-body">
+					<div class='form-group row-validator'>
+						<div class='controls'>
+							<input type='text' class='form-control icon-in icon-in-user' name="uname" ng-model="user.uname"
+								  validator="required, account" required-error-message="请输入注册的手机号或邮箱" valid-method="submit" title="手机号/邮箱" placeholder="手机号/邮箱">
+						</div>
+						<div class='controls  '>
+							<small class="text-danger" ng-if="user.error.indexOf('32') != 0">{{user.error}}</small>
+						</div>
+					</div>
+
+					<div class='form-group row-validator'>
+						<div class='controls '>
+							<input type='password' class='form-control icon-in icon-in-password' name="password" ng-model="user.password"
+								   validator="required" required-error-message="请输入密码" valid-method="submit" title="密码" placeholder="密码">
+						</div>
+						<div class='controls  '>
+							<small class="text-danger" ng-if="user.error == '3202'">密码错误！</small>
+						</div>
+					</div>
+					
+					<div class='form-group row '>
+						<div class='pull-right'>
+							<a class='vote1 font-size-14' href="javascript:;" ng-click="go('forgot')"> 忘记密码 </a>
+						</div>
+					</div>
+				</div>
+
+				<div class='form-actions margin-top--11' >
+					<div class="row">
+					<button type="submit" class="btn btn-action col-md-12" validation-submit="loginForm" ng-click="login()" title="">
+						　登 录　
+					</button>
+					</div>
+				</div>
+			</form>
+			<div style="margin-bottom: 25px;">
+				<div class='pull-left link-box'>
+					<a class='weixin active text-success' href="javascript:;" ng-click="go('weixin')"> 微信登录 </a>
+				</div>
+				<div class='pull-right'>
+					<a class='' href="/user/register.html"> &gt;&gt;立即注册 </a>
+				</div>
+			</div>
+		</div>
+		<div class="padding" ng-if="action=='forgot'">
+			<p class="font-size-19 text-center"><b>忘记密码</b></p>
+			<br>
+
+			<form name="myFormForget" class='form form-horizontal form-validation' ng-valid ng-invalid
+				  ng-submit="go('reset')">
+				<div class="form-body">
+					<div class='form-group height'>
+						<div class='controls'>
+							<input type='text' class='form-control' name="mobile" ng-model="user.mobile"
+								validator="mobile" valid-method="watch" title="手机号" placeholder="请输入手机号">
+						</div>
+					</div>
+					
+					<div class='form-group' ng-class="user.error == '3208' ? 'has-error' : ''"  style="height: 60px">
+						<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+						   <div class="col-md-8" style="padding-right: 0">
+							   <input type='password' class='form-control'  name="sms" ng-model="user.sms"
+									  validator="len=6" len-error-message="请输入短信校验码" valid-method="blur" title="短信校验码" placeholder="短信校验码">
+						   </div>
+							<div class="col-md-4" style="padding-left: 0" >
+								<a class='form-control btn btn-default ' href="" ng-disabled="!isClickable()" ng-click="sendCode()"> {{vcode.title}} </a>
+							</div>
+							</div>
+						</div>
+						</div>
+						<div class='controls'>
+							<div class="text-danger" ng-if="user.error == '3208'" > 短信校验码错误</div>
+							<div class="text-danger" ng-if="user.error == '3205'" >手机号未注册！</div>
+							<div class="" ng-if="vcode.sent" ><small>语音短信校验码已发送到手机，5分钟内有效。</small></div>
+						</div>
+					</div>
+				</div>
+
+				<div class='form-actions margin-top-30'>
+					<button type="submit" class="btn btn-action"
+							title="" validation-submit="myFormForget" ng-click="go('reset')">下一步
+					</button>
+				</div>
+			</form>
+		</div>
+		<div class="padding" ng-if="action=='reset'">
+			<p class="font-size-19 text-center"><b>重置密码</b></p>
+			<br>
+
+			<form name="myFormReset" class='form form-horizontal form-validation' ng-valid ng-invalid ng-submit="resetPwd()">
+				<div class="form-body">
+					<div class='form-group height'>
+						<div class='controls'>
+							<input type='password' class='form-control' ng-disabled="user.error == '3203'" name="password"
+								   ng-model="user.password" validator="password" password-error-message="密码必须是6-16位的字母与数字的组合！" valid-method="blur" title="密码"  placeholder="请输入新密码">
+						</div>
+					</div>
+					<div class='form-group height'>
+						<div class='controls'>
+							<input type='password' class='form-control' ng-disabled="user.error == '3203'" validator="password,equal" equal='{{user.password}}' password-error-message="密码必须是6-16位的字母与数字的组合！" equal-error-message="两次输入的密码不匹配" valid-method="blur"  name="password2" ng-model="user.password2" placeholder="请再次输入新密码">
+						</div>
+					</div>
+				</div>
+
+				<div class='form-actions margin-top-20'>
+					<button type="submit" class="btn btn-action" ng-disabled="user.error == '3203'" validation-submit="myFormReset" ng-click="resetPwd()">
+						　提　交　
+					</button>
+				</div>
+			</form>
+		</div>
+		<div class="padding" ng-if="action=='success'">
+			<h2>重置密码</h2>
+
+			<p>您的账户密码已重置成功，请<a class='btn btn-link' href="javascript:;" ng-click="go('login')">点击此处</a>登录。</p>
+		</div>
+	</div>
+</div> </div>
+
+<div class="container" ng-if="action=='forgot'">
+	<div class="padding">
+		<h3 class="text-left">密码找回</h3>
+		<hr class="row">
+		<div class="register-form">
+			<form name="loginForm" class='form form-horizontal form-validation padding' ng-valid ng-invalid ng-submit="register()">
+				<div class="form-body">
+					<div class='form-group row-validator'>
+						<div class='controls'>
+							<input type='text' class='form-control icon-in icon-in-user' name="uname" ng-model="user.uname"
+								  validator="required, account" required-error-message="请输入注册用的手机号或邮箱" valid-method="blur" title="手机号/邮箱" placeholder="手机号/邮箱">
+						</div>
+						<div class='controls  '>
+							<small class="text-danger" ng-if="user.error.indexOf('32') != 0">{{user.error}}</small>
+						</div>
+					</div>
+
+					<div class='form-group row-validator'>
+						<div class='input-group '>
+							<input type='text' class='form-control' name="sms" ng-model="user.sms" maxlength=6 title="验证码" placeholder="验证码">
+							<span class="input-group-btn"> <a class="btn btn-action" style="width: 180px;" ng-disabled="!isClickable()" ng-click="sendCode()"> {{vcode.title}} </a></span >
+						</div>
+						<div class='controls  '>
+							<small class="text-danger" ng-if="user.error == '3202'">验证码错误！</small>
+						</div>
+					</div>
+					
+					<div class='form-group row-validator'>
+						<div class='controls '>
+							<input type='password' class='form-control icon-in icon-in-password' name="password" ng-model="user.password"
+								   validator="password,required" password-error-message="密码必须是6-20位字母、数字以及特殊符号的组合！" required-error-message="请输入密码" valid-method="submit" title="密码" placeholder="密码: 6-20位字母、数字以及特殊符号的至少2种的组合">
+						</div>
+						<div class='controls  '>
+							<small class="text-danger" ng-if="user.error == '3202'">密码错误！</small>
+						</div>
+					</div>
+					
+					<div class='form-group row-validator'>
+						<div class='controls '>
+							<input type='password' class='form-control icon-in icon-in-password' name="password2" ng-model="user.password2" placeholder="请再次输入密码"
+								   validator="equal" equal='{{user.password}}' equal-error-message="两次输入的密码不匹配" valid-method="blur" title="请再次输入密码" placeholder="请再次输入密码">
+						</div>
+					</div>
+				</div>
+
+				<div class='form-actions margin-top-20' >
+					<div class="row">
+					<button type="submit" class="btn btn-lg btn-action col-md-12" validation-submit="loginForm" ng-disabled="user.sms.length < 6" ng-click="register()" title="">
+						　注 册　
+					</button>
+					</div>
+				</div>
+			</form>
+			<div style="margin-bottom: 50px;">
+				<div class='pull-left'>
+					<a class='' href="/user/register.html"> 收不到验证码？ </a>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+</ion-content>
+</ion-view>
