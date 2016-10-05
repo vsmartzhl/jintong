@@ -3,8 +3,18 @@
 // Header Controller 
 moduleC.controller("HeaderCtrl", ["$location","$rootScope", "$scope", "$state", "$stateParams", "$interval", "User", function($location, $rootScope, $scope, $state, $stateParams, $interval, User) {
 	$scope.userData = User.getUserData();
-    $scope.status = "out";
+    $scope.status = $scope.userData.name ? "in" : "out";
+    $scope.alert = function () {
+console.log(jQuery("body > div").html());
+    };
+    
 
+	// 显示/隐藏右上角的登录按钮
+	if (location.pathname.indexOf("/user") > -1) {
+		$scope.status = "-";
+		$scope.inLogin = !(location.pathname.indexOf("/register.html") > -1);
+	}
+	
     var ads = ZCar.data("ads");
 	$scope.msgOrg = ads && ads.messages || [];
 	$scope.notices = ZCar.cache("notices") || [];
@@ -204,7 +214,7 @@ moduleS.factory("User", ["$rootScope", "$http", function($rootScope, $http) {
             req.password = Base64.encode(data.password);
             req.mobilecode = Base64.encode(data.sms);
 				
-            $rootScope.sendPost("resetPwd", req, function(res, status, headers, config) {
+            $rootScope.sendPost("/user/resetPwd", req, function(res, status, headers, config) {
 				return ZCar.doCallback(res, callback);
             });
         },

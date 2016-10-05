@@ -23,7 +23,7 @@ post
 
 ###参数###
 - username		手机号或邮箱
-- password		密码       base64_encode   加密  
+- password		密码        base64_encode   加密  
 - code		    验证码       base64_encode   加密  
 
 
@@ -120,7 +120,7 @@ post
 
 ###状态值###
 
-- 200        登录成功
+- 200        成功
 
 ###data数据说明###
 ```
@@ -130,6 +130,45 @@ post
 		"status_message": "OK"
 	},
     "content": {
+    }
+}
+```
+
+
+# 注册接口 #
+
+url： /i/resetpwd
+
+## 请求方式 ##
+
+post
+
+###参数###
+- username		手机号或邮箱
+- password		密码        base64_encode   加密  
+- code		    验证码       base64_encode   加密  
+
+
+###返回参数###
+
+- status.status_code       状态码，值为200表示成功，其他表示失败
+- status.message    状态提示信息
+- content       页面所需要的数据信息, 具体参见数据说明
+
+###状态值###
+
+- 200        成功
+- 3208       验证码错误
+
+###data数据说明###
+```
+{
+    "status": {
+		"status_code": "200",
+		"status_message": "OK"
+	},
+    "content": {
+        "memo": ""                   // 字符串，其他
     }
 }
 ```

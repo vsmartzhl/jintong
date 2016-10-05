@@ -1,39 +1,45 @@
 
-// 
+// 配置url路由
 moduleI.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
 	var html_path = "/user/template/";
 	function mapping(url, crontroller, template) {
 		return {"url": url, "template": function() {return getHtml(html_path + template); }, "controller": crontroller};
 	}
-	// 用户登录相关设置
-	if(location.pathname.indexOf("/login.html") > -1) {
-		$stateProvider.state('default', mapping("", 'LoginCtrl', "t_login"));
-		$stateProvider.state('login', mapping("/", 'LoginCtrl', "t_login"));
-	}
-	// 用户注册相关设置
-	if(location.pathname.indexOf("/register.html") > -1) {
-		$stateProvider.state('default', mapping("", 'RegisterCtrl', "t_login"));
-		$stateProvider.state('register', mapping("/", 'RegisterCtrl', "t_login"));
-	}
-  $stateProvider
-	.state("slides", {
-	  url: "/register",
-	  template: function() { 
-		return getHtml(html_path + "t_login"); 
-	  },
-	  controller: "LoginCtrl"
-	});
+	
+	// var ctrl = (location.pathname.indexOf("/register.html") > -1) ? 'RegisterCtrl' : 'LoginCtrl';
+	
+	$stateProvider.state('default', mapping("", 'LoginCtrl', "t_login"));
+	$stateProvider.state('home', mapping("/", 'LoginCtrl', "t_login"));
 }]);
 
-moduleC.controller('RegisterCtrl', ['$location','$rootScope', '$scope', '$state','$stateParams', '$timeout', 'User', 'Code', function($location, $rootScope, $scope, $state,$stateParams, $timeout, User, Code) {
-	$scope.action = "register";
-	$scope.user	= {password: "", uname: "", error: "", code: "", sms: "", mobile: ""};
+moduleC.controller('LoginCtrl', ['$location','$rootScope', '$scope', '$state','$stateParams', '$timeout', 'User', 'Code', function($location, $rootScope, $scope, $state,$stateParams, $timeout, User, Code) {
+	$scope.action = "login";
+	$scope.step = 0;
+	$scope.vcode = {};
+	$scope.user	= {};
 	$scope.userData = User.getUserData(); //获取缓存的登录信息
 	$scope.images = null; 
-	$scope.hint = "";	
-	document.title = "开放平台-注册";
+	$scope.hint = "";
+	if (location.pathname.indexOf("/register.html") > -1) {
+		document.title = "开放平台-注册";
+		$scope.action = "register";
+	} else {
+		document.title = "开放平台-登录";
+		$scope.action = "login";
+	}
 	
-	$scope.vcode = {title: "获取验证码", sent: false, clickable: true, experied: false, "max-limit": 60, limit: 60}; // limit: timeout 1 minutes
+	var reason = ZCar.data("goto_login_reason");
+	if (reason && typeof reason == "string" && reason.trim() != "") {
+		ZCar.data("goto_login_reason", null);
+		$scope.alerts = reason;
+		$timeout(function() {ZCar.logout();}, 100);
+	}
+	
+	function init() {
+		$scope.user	= {password: "", uname: $scope.user.uname || "13800009999", error: "", code: "", sms: "", mobile: ""};
+		$scope.vcode = {title: "获取验证码", sent: false, clickable: true, experied: false, "max-limit": 60, limit: 60}; // limit: timeout 1 minutes
+	}
+	init();
 	
 	// 校验手机号和发送状态，控制发送按钮有效无效状态
 	$scope.isClickable = function isClickable() {
@@ -80,7 +86,7 @@ moduleC.controller('RegisterCtrl', ['$location','$rootScope', '$scope', '$state'
 		$scope.user.password2 = "";
 	};
 	
-	//点击登录按钮激活login
+	//点击注册按钮
 	$scope.register = function register(){
 		if(ZCar.guard("register")) {
 			return;
@@ -103,24 +109,17 @@ moduleC.controller('RegisterCtrl', ['$location','$rootScope', '$scope', '$state'
             }
         });
 	}
-
-}]);
-
-moduleC.controller('LoginCtrl', ['$location','$rootScope', '$scope', '$state','$stateParams', '$timeout', 'User', 'Code', function($location, $rootScope, $scope, $state,$stateParams, $timeout, User, Code) {
-	$scope.action = "login";
-	$scope.user	= {password: "", uname: "", error: "", code: "", sms: "", mobile: ""};
-	$scope.userData = User.getUserData(); //获取缓存的登录信息
-	$scope.images = null; 
-	$scope.hint = "";
-	document.title = "开放平台-登录";
 	
-	
-	var reason = ZCar.data("goto_login_reason");
-	if (reason && typeof reason == "string" && reason.trim() != "") {
-		ZCar.data("goto_login_reason", null);
-		$scope.alerts = reason;
-		$timeout(function() {ZCar.logout();}, 100);
-	}
+    // 点击事件，用于切换视图
+    $scope.go = function go(action, step) {
+        $scope.action = action;
+		$scope.step = step || 0;
+		if ($scope.step < 1) {
+			init();
+			var $bar = jQuery("#bs-navbar");
+			$bar.attr("class", $bar.attr("class").replace(/hide/gi, "") + ((action == 'login') ? " hide" : ""));
+		}
+    };
 	
 	//点击登录按钮激活login
 	$scope.login = function login(){
@@ -159,8 +158,6 @@ moduleC.controller('LoginCtrl', ['$location','$rootScope', '$scope', '$state','$
             }
         });
 	}
-
-
 	
 	// 发送变更请求
 	$scope.resetPwd = function resetPwd() {
@@ -168,36 +165,15 @@ moduleC.controller('LoginCtrl', ['$location','$rootScope', '$scope', '$state','$
 			return;
 		}
 		User.resetPwd($scope.user, function(res) {
-            if (("" + res.code) != "200") {
-                $scope.user.error = res.code;
-				// 验证码错误，重新获取
-				if ($scope.user.error == "3208") {
-					$scope.user.sms = "";
-				}
-				if ($scope.user.error == "3203") {
-					$rootScope.alert("密码修改失败！\n请联系客服进行密码重置！");
-				} else {
-					$scope.go("forgot");
-				}
+			init();
+            if (res.failed) {
+                $scope.user.error = res.message || "密码修改失败！\n请联系客服进行密码重置！";
             } else {
                 $scope.user.error = "";
-				$scope.go("success");
             }
-			$scope.user.mobile = "";
-			$scope.user.sms = "";
-			$scope.user.uname = "";
-			$scope.user.code = "";
-			$scope.user.password = "";
-			$scope.user.password2 = "";
+			$scope.go("forgot", 3);
         });
 	}
-	
-    // 点击事件，用于切换视图
-    $scope.go = function go(step) {
-        $scope.action = step;
-		
-		$scope.user.password = "";
-    };
 }]);
 
 

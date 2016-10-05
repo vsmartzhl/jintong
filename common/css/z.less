@@ -1,63 +1,6 @@
 @import "libs/grid-framework.less";
 @import "libs/variables.less";
-
-// define colors to make them readable
-@color-white: #fff;
-@color-red: #e02222;
-@color-dark-red: #B94A48;
-@color-gray: #555555;
-@color-light-gray: #fafafa;
-@color-dark-gray: #646365;
-@color-light-blue: #00BBFF;
-@color-dark-blue: #1970BF;
-@color-golden: #f9bc55;
-@color-light-golden: lighten(@color-golden, 10%);
-@color-dark-golden: darken(@color-golden, 10%);
-
-@color-light-black: #494949;
-@color-black: #000;
-
-@base-font-color: @color-white;
-@navi-active-font-color: @color-red;
-@baseBgColor: @color-light-black;
-@baseLinkColor: @color-light-golden;
-
-@note-font-color: darken(@base-font-color, 10%);
-
-@pair-blue-color: @color-white;
-@pair-blue-bg: @color-dark-blue;
-
-@pair-red-color: @color-white;
-@pair-red-bg: @color-red;
-
-@pair-golden-color: @color-white;
-@pair-golden-bg: @color-golden;
-
-@hint-color: gray;
-@link-color: @color-golden;
-@link-active-color: @color-dark-golden;
-@link-dangerous-color: red;
-@border-color: gray;
-@border-noborder: none;
-@border-active-color: #1970BF;
-
-@section-active-color: #fff;
-@section-active-bg-color: #1970BF;
-@section-color: inherit;
-@section-bg-color: inherit;
-@toolbar-tab-bg-color: gray;
-@toolbar-tab-hover-bg-color: #1970BF;
-
-
-
-//== Form states
-@state-success-text:             #3c763d;
-@state-success-bg:               #dff0d8;
-@state-success-border:           darken(spin(@state-success-bg, -10), 5%);
-
-@state-danger-text:              #a94442;
-@state-danger-bg:                #f2dede;
-@state-danger-border:            darken(spin(@state-danger-bg, -10), 5%);
+@import "./variables.less";
 
 .no-animation.ng-animate.ng-enter, .no-animation.ng-animate.ng-leave, .no-animation.ng-animate.ng-enter.ng-enter-active, .no-animation .ng-leave.ng-leave-active, 
 .no-animation.ng-animate.ng-show, .no-animation.ng-animate.ng-hide {
@@ -193,10 +136,12 @@ header .navbar {
   margin-bottom: 0;
 }
 
-header a {
+.nav a {
   color: @color-dark-gray;
 }
-
+.nav>li>a:focus, .nav>li>a:hover {
+  background-color: transparent;
+}
 
 body {
   background: @baseBgColor;
@@ -270,12 +215,37 @@ hr {
 }
 
 
+.img-list {
+	width: 100%;
+	min-height: 50px; 
+}
+
+.box {
+    min-height: 20px;
+    padding: 15px;
+    background-color: @well-bg;
+    border: 1px solid @well-border;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+
+.box a {
+	color: @color-gray;
+}
+.col-md-0 {
+	float: left;
+    position: relative;
+    min-height: 1px;
+    .padding-h(15px);
+}
 
 
-
-
-
-
+.important {
+	font-size: 110%;
+	color: @color-red;
+	font-weight: bold;
+}
 
 
 
@@ -332,9 +302,6 @@ tr.clicked > td .header {
 //	border-bottom: 3px solid @link-active-color;
 }
 
-.important {
-	color: @link-active-color;
-}
 
 h3, h4, h5 {
 	margin-top: 0px !important;
@@ -498,11 +465,6 @@ td .checkbox {
 }
 
 
-.impressive {
-	font-size: 110%;
-	color: @color-dark-blue;
-	font-weight: bold;
-}
 .black{
   color: black;
 }
@@ -841,10 +803,7 @@ color:#999999;
 .scroll-bar{
   overflow: auto;
 }
-.box{
-  margin-left: 0px;
 
-}
 .nav-fixed{
   position: fixed;
   background:@color-white;

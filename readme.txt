@@ -1,6 +1,6 @@
 目录结构如下：
 common - 通用模块
-goods - 服务管理相关的页面
+service - 服务管理相关的页面
 trade - 前端模块
 user - 用户中心
 vendor - 服务商入驻

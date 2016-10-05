@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<!-- IE=edge表示强制使用IE最新内核，chrome=1表示如果安装了针对IE6/7/8等版本的浏览器插件Google Chrome  -->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>开放平台</title>
+    <link href="/favicon.ico">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<link rel="stylesheet" href="/common/plugin/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/common/plugin/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/common/css/z.css" />
+	<!--[if lte IE 9]>
+	<script src="/common/plugin/bootstrap/js/html5shiv.min.js"></script>
+	<script src="/common/plugin/bootstrap/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body ng-app="starter" animation="slide-left-right-ios7">
+ <!-- uiView:  --><div data-ui-view="" class="ng-scope"><ion-view class="ng-scope">
+<ion-content scroll="false" padding="true">
+<!-- ngIf: action=='register' -->
+<!-- ngIf: action=='login' --><div class="bg_login ng-scope" ng-if="action=='login'"> <div class="container">
+	<div class="login-form">
+		<!-- ngIf: alerts && alerts.length > 0 -->
+		<div class="padding">
+			<h3 class="text-left">账户登录</h3>
+			<hr class="row">
+			<form name="loginForm" class="form form-horizontal form-validation padding ng-pristine ng-invalid ng-invalid-uname ng-invalid-password" ng-valid="" ng-invalid="" ng-submit="login()">
+				<div class="form-body">
+					<div class="form-group row-validator">
+						<div class="controls">
+							<input type="text" class="form-control icon-in icon-in-user ng-isolate-scope ng-pristine ng-invalid ng-invalid-uname" name="uname" ng-model="user.uname" validator="required, account" required-error-message="请输入注册的手机号或邮箱" valid-method="submit" title="手机号/邮箱" placeholder="手机号/邮箱"><span></span>
+						</div>
+						<div class="controls  ">
+							<!-- ngIf: user.error.indexOf('32') != 0 --><small class="text-danger ng-binding ng-scope" ng-if="user.error.indexOf('32') != 0"></small><!-- end ngIf: user.error.indexOf('32') != 0 -->
+						</div>
+					</div>
+
+					<div class="form-group row-validator">
+						<div class="controls ">
+							<input type="password" class="form-control icon-in icon-in-password ng-isolate-scope ng-pristine ng-invalid ng-invalid-password" name="password" ng-model="user.password" validator="required" required-error-message="请输入密码" valid-method="submit" title="密码" placeholder="密码"><span></span>
+						</div>
+						<div class="controls  ">
+							<!-- ngIf: user.error == '3202' -->
+						</div>
+					</div>
+					
+					<div class="form-group row ">
+						<div class="pull-right">
+							<a class="vote1 font-size-14" href="javascript:;" ng-click="go('forgot', 0)"> 忘记密码 </a>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-actions margin-top--11">
+					<div class="row">
+					<button type="submit" class="btn btn-action col-md-12" validation-submit="loginForm" ng-click="login()" title="">
+						　登 录　
+					</button>
+					</div>
+				</div>
+			</form>
+			<div style="margin-bottom: 25px;">
+				<div class="pull-left link-box">
+					<a class="weixin active text-success" href="javascript:;" ng-click="go('weixin')"> 微信登录 </a>
+				</div>
+				<div class="pull-right">
+					<a class="" href="/user/register.html"> &gt;&gt;立即注册 </a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> </div><!-- end ngIf: action=='login' -->
+
+<!-- ngIf: action=='forgot' -->
+</ion-content>
+</ion-view>
+</div>
+</body>
+</html>

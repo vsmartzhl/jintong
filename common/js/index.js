@@ -1,4 +1,4 @@
-var _moduleC = ['ngAnimate', 'ui.router', 'validation', 'mgcrea.ngStrap'];
+var _moduleC = ['ngAnimate', 'ngSanitize', 'ui.router', 'validation', 'mgcrea.ngStrap'];
 if (window.location.href.indexOf("/h5/") > 0) {
 	_moduleC.push('ionic');
 }
@@ -803,6 +803,7 @@ moduleI.run(["$rootScope", "$state", "$location", "$document", "$animate", "$mod
 				}
 				ZCar.log("got response for " + config.url + ".", ZCar.copy(res, ["uuid", "code", "message"]));
             } else {
+				data.message = data.status.status_message || "";
 				data.code = "" + data.status.status_code;
 				if (data.code == "3007" || "" + data.code == "9903") {
 					ZCar.gotoLogin("监测到账户异常，为保护您的信息安全，请重新登录！");

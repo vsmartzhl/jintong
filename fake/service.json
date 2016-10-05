@@ -1,0 +1,16 @@
+{
+    "status": {
+		"status_code": "200",
+		"status_message": "OK"
+	},
+    "content": {
+		"page": 1,
+		"offset": 10,
+		"pages": 1,
+		"list": [{"id": "S001", "img": "/common/img/service/5.png", "name": "弹性扩展", "price": 1.50, "unit": "元/次", "description": "服务资源弹性升级<br>应对不同业务强度"},
+				{"id": "S002", "img": "/common/img/service/6.png", "name": "简单易用", "price": 50, "unit": "元/月", "description": "控制台直接管控资源<br>操作便捷"},
+				{"id": "S003", "img": "/common/img/service/7.png", "name": "安全防护", "price": 15, "unit": "元/月", "description": "多维度安全保护<br>安心托管各种应用"},
+				{"id": "S004", "img": "/common/img/service/8.png", "name": "贴心服务", "price": 0, "unit": "", "description": "7*24咨询应答<br>及时有效解决各种问题"}],
+		"memo": ""                   
+    }
+}

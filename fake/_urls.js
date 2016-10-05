@@ -5,16 +5,19 @@ var urlFake = {
 	"/i/login": "fake/login.json", 
     "/i/logout": "fake/login.json", 
     "/code/send": "fake/code.json",
+	"/user/resetPwd": "fake/login.json", 
 	
+
 	
-    "allow": "fake/allow.json", 
-    "getCode": "fake/code.json", 
-    "resetPwd": "fake/resetpwd.json", 
+	/* 首页用 */
+	"/home/list": "fake/home.json", 
 	
-	/* 首页和广告页用 */
-	"getAdList": "data/home.json", 
-	"home": "fake/home.json", 
-    "saveSellerChangePriceAgain":"fake/saveSellerChangeAgain.json"
+	/* service用 */
+	"/service/list": "fake/service.json", 
+	
+	/* 处理结果 */
+	"/result/failed": "fake/failed.json", 
+    "/result/success":"fake/success.json"
 };
 module.exports = {
 	get: function(url) { 
@@ -25,6 +28,6 @@ module.exports = {
 			key = "/" + key[1];
 		}
 		
-		return urlFake[key.toLowerCase()] || url;
+		return urlFake[key] || url;
 	}
 };
