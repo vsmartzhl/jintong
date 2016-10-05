@@ -1078,11 +1078,11 @@ moduleI.run(["$rootScope", "$state", "$location", "$document", "$animate", "$mod
 }]);
 
 // register router for Cart 
-moduleI.config(["$stateProvider", "$urlRouterProvider",function($stateProvider, $urlRouterProvider) {
+//moduleI.config(["$stateProvider", "$urlRouterProvider", "$locationProvider",function($stateProvider, $urlRouterProvider, $locationProvider) {
+moduleI.config(["$urlRouterProvider", function($urlRouterProvider) {
   $urlRouterProvider.otherwise("");
+ // $locationProvider.html5Mode(true);
 }]);
-
-
 
 
 /**

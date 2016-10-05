@@ -1,0 +1,58 @@
+<div data-ng-include="'/service/template/t_search.html'"></div>
+
+<div class="container">
+	<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-3">
+			<img ng-src="{{item.img | formatUrl}}"  class="img-list img-thumbnail" title="{{item.name}}"/>
+		</div>
+		<div class="col-md-9">
+			<h4><span ng-bind-html="item.name"></span><span class="pull-right important">{{item.price ? item.price + " " + item.unit : "免费" }}</span></h4>
+			
+			<p class="padding-v15"><b>服务描述： </b><span ng-bind-html="item.description"></span></p>
+			<p class="padding-v15"><span class=""><b>请求方式：</b> TODO HTTPS</span><span class="pull-right"><b>所属标签：</b> TODO 经济</span></p>
+		</div>
+	</div>
+	<div class="row">
+	<hr>
+	<div class="col-md-0 box">服务详情</div>
+	<div class="col-md-0 box">API详情</div>
+	<div class="col-md-0 box">错误码参照</div>
+	<div class="col-md-0 box">SDK</div>
+	<div class="col-md-0 box">订单记录</div>
+	<div class="clearfix"></div>
+ <br>
+宏观月度数据库内容：提供全国的投资、物价、居民收支、工业、交通运输、财政、金融、国内贸易、对外经济、旅游、景气指数等方面指标。<br>
+投资：城镇固定资产投资、房地产开发投资、施工面积、竣工面积、销售面积、销售额，以及各级细分数据<br>
+价格指数：同比CPI、环比CPI、PPI、RPI、原材料、燃料、动力购进价格指数、农业生产资料价格指数等。<br>
+居民收支：城镇居民人均可支配收入、城镇居民人均消费支出、城镇居民每百户耐用消费品拥有量<br>
+工业：工业总产值、工业增加值、工业经济效益数据、400多种工业产品的产量、工业销售产值、出口交货值等<br>
+交通运输：货运量、客运量、货物周转量、旅客周转量、主要港口吞吐量等<br>
+邮电通信：通信业务收入、电话及互联网用户数、通话时长、电话普及率<br>
+国内贸易：社会消费品零售总额、分行业社会消费品零售总额、分地区社会消费品零售总额、限额以上批发零售贸易业商品零售类值<br>
+对外经济：进出口总额、出口总额、进口总额、按商品贸易方式分进出口额、按商品贸易方式分出口额、按商品贸易方式分进口额、按企业性质分的进口额、按企业性质分的出口额、上百种商品的进口（出口）数量和金额、进口商品贸易同比指数、出口商品贸易同比指数、利用外资情况、FDI、分国别进出口等<br>
+财政：国家财政预算收入、国家财政预算支出及细分各项收入和支出<br>
+金融：金融机构（含外资）人民币信贷收支平衡表、金融机构本外币信贷收支平衡表、金融机构外汇信贷收支平衡表、货币供应量、汇率等<br>
+保险：保险业经营情况<br>
+证券：上市公司数量、股票交易情况、上证指数、深证指数、成份指数<br>
+旅游：入境旅游人数、入境旅游收入<br>
+ <br>
+景气指数：消费者景气指数、PMI<br>
+数据来源：国家统计局、海关总署、财政部、人民银行<br>
+数据起始时间：1983年<br>
+数据更新频率：每月<br>
+数据更新时间：每月10号左右至月末不间断更新（更新上月数据）<br>
+	</div>
+	</div>
+	<div class="col-md-3">
+		<div class="col-md-12 box" style="height: 250px;">
+			<label>item id: {{id}}</label>
+		</div>
+		<div class="col-md-12 box" style="min-height: 400px;">
+			<label>商户信息</label>
+		</div>
+	</div>
+	<div class="col-md-12" style="margin-bottom: 50px;"><div class="">
+	
+	</div></div>
+</div>

@@ -22,12 +22,17 @@ var urlFake = {
 module.exports = {
 	get: function(url) { 
 		var key = url.split("?")[0].split("/");
+		console.log(key.length + ": [" + key.join("_") + "]");
 		if (key.length > 2) {
 			key = "/" + key[1] + "/" + key[2];
 		} else {
 			key = "/" + key[1];
 		}
+		if (key == "/") {
+			return "/index.html";
+		}
 		
+		console.log(url + " to " + key);
 		return urlFake[key] || url;
 	}
 };

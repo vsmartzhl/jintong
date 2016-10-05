@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="row">
+	  <div class="col-md-4">
+		<a class="navbar-brand" href="/" onclick="reopen()"><img class="fa" src="/common/img/logo.png" style="width: auto; height: 24px;"></a>
+	  </div>
+	  <div class="col-md-8">
+		<div class="input-group">
+		  	<input type='text' class='form-control' name="search" ng-model="user.search" placeholder="服务">
+			<span class="input-group-btn">
+			<button class="btn btn-primary" style="width: 120px;" type="button" onclick="javascript:decodeTS()"> 搜索 </button>
+		  </span>
+		  <span class="input-group-btn" style="padding-left: 60px;">
+			<button class="btn btn-action" type="button" onclick="javascript:encodeTS()">创建服务</button>
+		  </span>
+		</div>
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col-md-4"><h3 class="padding">服务行业</h3></div>
+		<div class="col-md-8">
+		<ul class="nav navbar-nav ">
+			<li class=""><a href="/user/login.html" onclick="reopen()"><i class="fa" ><h3>数据商城</h3></i></a></li>
+			<li class=""><a href="/user/register.html" onclick="reopen()"><i class="fa"><h3>云服务</h3></i></a></li>
+			<li class=""><a href="/user/login.html" onclick="reopen()"><i class="fa" ><h3>计算服务</h3></i></a></li>
+			<li class=""><a href="/user/register.html" onclick="reopen()"><i class="fa"><h3>解决方案</h3></i></a></li>
+		</ul>
+		</div> 
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+		<span class="">当前位置：首页>>数据商城>>全部数据</span>
+		</div> 
+	</div>
+</div>
