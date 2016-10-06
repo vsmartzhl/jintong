@@ -5,7 +5,7 @@ moduleC.controller("HeaderCtrl", ["$location","$rootScope", "$scope", "$state", 
 	$scope.userData = User.getUserData();
     $scope.status = $scope.userData.name ? "in" : "out";
     $scope.alert = function () {
-console.log(jQuery("body > div").html());
+// console.log(jQuery("body > div").html());
     };
     
 
@@ -43,61 +43,6 @@ console.log(jQuery("body > div").html());
 		$scope.status = "out";
     };
 	
-	$scope.secondes = 0;
-	var ignoreCount = 0;
-	var qtime = {scope: $scope, name: "home_notices", finished: false, exec: function() {
-		qtime.scope.secondes++;
-		if (qtime.scope.secondes < 60) {
-			return;
-		}
-		qtime.scope.secondes = 0;
-		
-		// 防止多个窗口向服务器发送过多请求
-		var wins = ZCar.data("wins") || 1;
-		if (ignoreCount < wins) {
-			// 从缓存中取状态
-			qtime.scope.notices = ZCar.cache("notices") || [];
-			qtime.scope.messages = qtime.scope.msgOrg.concat(qtime.scope.notices);
-			ignoreCount++;
-			return;
-		}
-		ignoreCount = 0;
-		
-		$rootScope.sendGet("getNotice", {"noalert": true, "userId": ZCar.cache("buyerid")}, function(res, status, headers, config) {
-			if (!res.failed) {
-				if (res.notify && res.notify.length > 0) {
-					var len = 10 - res.notify.length;
-					if (len < 0) {
-						len = 0;
-					}
-					while (qtime.scope.notices.length > len) {
-						qtime.scope.notices.shift();
-					}
-					qtime.scope.notices = qtime.scope.notices.concat(res.notify);
-					
-					// 清理重复数据
-					var msgs = "";
-					for (var i = 0; i < qtime.scope.notices.length; i++) {
-						if (msgs.indexOf(";" + qtime.scope.notices[i]) < 0) {
-							msgs += ";" + qtime.scope.notices[i];
-						}
-					}
-					qtime.scope.notices = msgs.substr(1).split(";");
-					
-					if(qtime.scope.msgOrg[0] && qtime.scope.msgOrg[0].indexOf("欢迎") > -1) {
-						qtime.scope.msgOrg.shift();
-					}
-					ZCar.cache("notices", qtime.scope.notices);
-					qtime.scope.messages = qtime.scope.msgOrg.concat(qtime.scope.notices);
-				}
-			}
-		}, function(res, status, headers, config) {
-			// ignore
-		}, 1);
-	}}
-	if ($scope.userData.name) {
-		$rootScope.listen(qtime);
-	}
 	if(!ZCar.guard("interval")) {
 	$interval(function() {
         if (ZCar.needRefresh) {
@@ -122,25 +67,9 @@ console.log(jQuery("body > div").html());
 	}
 		
     $scope.reportIssue = function reportIssue() {
-		var openLink = jQuery("[name='toreportIssue']");
-		var key;
-		var body = "url:" + location.href + ";";
-		var other = '"url": "' + location.href + '"';
-		for(var i = window.localStorage.length - 1 ; i >=0; i--){
-			key = window.localStorage.key(i);
-			other += ',\n"' + key + '": "' + window.localStorage.getItem(key) + '"';
-			if (key.indexOf("code") < 0 && key.indexOf("user") < 0) {
-				continue;
-			}
-			
-			body += key + ":" + window.localStorage.getItem(key) + ";";
-		}
-		openLink.attr('href', "mailto:totimingtechnology@totiming.com?subject=report issue&body=[" + encodeURIComponent(body) + "]");
-		openLink[0].click();
-		
 		var content = "<div class='' style='width:400px;margin: 20px auto;height:300px;'>"+
 				"<h4><b>请将下面信息复制到邮件中去：</b></h4>"+
-				'<textarea style="margin: 0px; width: 400px; height: 252px;">问题信息:\n==============================================\n{' + other + "\n}\n==============================================</textarea>"+
+				'<textarea style="margin: 0px; width: 400px; height: 252px;">问题信息:\n==============================================\n{' + "" + "\n}\n==============================================</textarea>"+
 				"<div><button class='btn btn-primary pull-right' ng-click='$hide();'>关闭</button></div>"+
 		    "</div>";
 		$rootScope.notify({scope: $scope, container: 'body', "content": content});
