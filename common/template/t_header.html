@@ -1,6 +1,6 @@
 <div ng-controller="HeaderCtrl" ng-dblclick ="alert()">
-<div class="well padding0"><div class="container" ng-if="status != '-'">
-    <div class="navbar-header">
+<div class="well padding0"><div class="container">
+    <div class="navbar-header" ng-if="status == '-'">
 		<a class="navbar-brand" href="/" onclick="reopen()"><img class="fa" src="/common/img/logo.png" style="width: auto; height: 24px;"></a>
     </div>
 	<ul class="nav navbar-nav pull-right" ng-if="status == 'out'">
@@ -11,9 +11,7 @@
 		<li><a href="">{{userData.name || userData.username}}</a></li>
 		<li><a href="" ng-click="logout()">退出</a></li>
 	</ul>
-</div></div>
-<div class="well padding0"><div class="container" ng-if="status == '-'">
-    <nav id="bs-navbar" class="" ng-class="{hide: inLogin}">
+    <nav id="bs-navbar" class="" ng-class="{hide: inLogin}" ng-if="status == '-'">
 	<ul class="nav navbar-nav pull-right">
 		<li class="" ><a href="/user/login.html" onclick="reopen()"><i class="fa" style="color: gray; padding-right: 10px;">已有账号 </i><i class="fa" >请登录</i></a></li>
 	</ul>
