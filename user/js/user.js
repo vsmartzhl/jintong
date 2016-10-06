@@ -1,6 +1,6 @@
 
 // 配置url路由
-moduleI.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+moduleI.config(['$stateProvider',function($stateProvider) {
 	var html_path = "/user/template/";
 	function mapping(url, crontroller, template) {
 		return {"url": url, "template": function() {return getHtml(html_path + template); }, "controller": crontroller};

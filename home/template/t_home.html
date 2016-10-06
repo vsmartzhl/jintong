@@ -4,7 +4,7 @@
 	  <div class="col-md-4">
 		<a class="navbar-brand" href="/" onclick="reopen()"><img class="fa" src="/common/img/logo.png" style="width: auto; height: 24px;"></a>
 	  </div>
-	  <div class="col-md-8">
+	  <div class="col-md-8 padding-v15">
 		<div class="input-group">
 		  	<input type='text' class='form-control' name="search" ng-model="user.search" placeholder="服务">
 			<span class="input-group-btn">
@@ -16,7 +16,7 @@
 		</div>
 	  </div>
 	</div>
-	<div class="row">
+	<div class="clearfix">
 	<div class="col-md-4"><h3 class="padding">服务行业</h3></div>
 	<div class="col-md-8">
 	<ul class="nav navbar-nav ">
@@ -27,7 +27,7 @@
 	</ul>
 	</div> </div>
 </div>
-        <div class="box" style="position: relative; margin-top: -20px;">
+        <div class="">
             <div class="col-md-12 " >
                 <div class="row ">
                     <div id="carousel-example-generic" class="carousel slide right-icon " data-ride="carousel">
@@ -57,7 +57,7 @@
 					<p><img ng-src="{{data.service.img | formatUrl}}"   class="img-list img-thumbnail" /></p>
 					<p ng-bind-html="data.service.description"></p>
 				</div>
-				<div class='col-md-8'>
+				<div class='col-md-8' style="padding-top: 63px;">
 					<div class="col-md-3" ng-repeat="item in data.service.list track by $index">
 						<img ng-src="{{item.img | formatUrl}}"  class="img-list img-thumbnail" title="{{item.name}}"/>
 						<h3 class="padding-v15" ng-bind-html="item.name"></h3>
@@ -73,7 +73,7 @@
 					<p><img ng-src="{{data.saas.img | formatUrl}}"   class="img-list img-thumbnail" /></p>
 					<p ng-bind-html="data.saas.description"></p>
 				</div>
-				<div class='col-md-8'>
+				<div class='col-md-8' style="padding-top: 63px;">
 					<div class="col-md-3" ng-repeat="item in data.saas.list track by $index">
 						<img ng-src="{{item.img | formatUrl}}"  class="img-list img-thumbnail" title="{{item.name}}"/>
 						<h3 class="padding-v15" ng-bind-html="item.name"></h3>
@@ -89,7 +89,7 @@
 					<p><img ng-src="{{data.solution.img | formatUrl}}"  class="img-list img-thumbnail" /></p>
 					<p ng-bind-html="data.solution.description"></p>
 				</div>
-				<div class='col-md-8'>
+				<div class='col-md-8' style="padding-top: 63px;">
 					<div class="col-md-3" ng-repeat="item in data.solution.list track by $index">
 						<img ng-src="{{item.img | formatUrl}}"  class="img-list img-thumbnail" title="{{item.name}}"/>
 						<h3 class="padding-v15" ng-bind-html="item.name"></h3>

@@ -134,6 +134,9 @@ header .navbar {
 .nav a {
   color: #646365;
 }
+header a {
+  padding: 10px !important;
+}
 .nav > li > a:focus,
 .nav > li > a:hover {
   background-color: transparent;

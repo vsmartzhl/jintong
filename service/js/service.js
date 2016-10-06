@@ -13,7 +13,7 @@ $stateParams对象的值为：
 /*
  服务管理相关的controller、service 的脚本
 */
-moduleI.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+moduleI.config(['$stateProvider',function($stateProvider) {
 	var html_path = "/service/template/";
 	function mapping(url, crontroller, template) {
 		return {"url": url, "template": function() {return getHtml(html_path + template); }, "controller": crontroller};
