@@ -1004,7 +1004,7 @@ moduleI.run(["$rootScope", "$state", "$location", "$document", "$animate", "$mod
 		return $modal(opt);
     };
 	
-		var tpl_doing = '<div class="modal" style="width: 500px; margin-left: auto; margin-right: auto;" tabindex="-1" role="dialog" aria-hidden="true">' + 
+		var tpl_doing = '<div class="modal" style="background-color:initial; width: 500px; margin-left: auto; margin-right: auto;" tabindex="-1" role="dialog" aria-hidden="true">' + 
 '  <div class="modal-dialog" style="width: 480px; position:fixed; top: 30%;">' + 
 '    <div class="modal-content" movable>' + 
 '' + 

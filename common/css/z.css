@@ -144,7 +144,7 @@ header a {
 body {
   background: #494949;
 }
-body > div:first-child {
+body > div {
   background: #ffffff;
 }
 footer {
