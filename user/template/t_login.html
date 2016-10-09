@@ -7,6 +7,14 @@
 		<div class="register-form">
 			<form name="loginForm" class='form form-horizontal form-validation padding' ng-valid ng-invalid ng-submit="register()">
 				<div class="form-body">
+					<div class='form-group padding-v15 row-validator' ng-if="user.nickname">
+						<div class='col-md-2 padding0'><img ng-src="{{user.photo | formatUrl}}" ng-if="user.photo" class="img-list"></div>
+						<div class='col-md-10'>
+							<label>{{user.nickname}}<br> <small class="text-danger">初次微信扫码登录，需注册进行绑定</small></label>
+							<input type='hidden' name="photo" ng-model="user.photo">
+							<input type='hidden' name="nickname" ng-model="user.nickname">
+						</div>
+					</div>
 					<div class='form-group row-validator'>
 						<div class='controls'>
 							<input type='text' class='form-control icon-in icon-in-user' name="uname" ng-model="user.uname"
@@ -116,7 +124,8 @@
 			</form>
 			<div style="margin-bottom: 25px;">
 				<div class='pull-left link-box'>
-					<a class='weixin active text-success' href="javascript:;" ng-click="go('weixin')"> 微信登录 </a>
+				<a class='weixin active text-success' href="https://open.weixin.qq.com/connect/qrconnect?appid=wxa8d92f54c4a0e3f6&redirect_uri=http://123.206.19.34:3000&response_type=code&scope=snsapi_login&state=123#wechat_redirect"> 微信登录 </a>
+					<a class='weixin active text-success' href="javascript:;" ng-click="go('weixin')"> 微信登录2 </a>
 				</div>
 				<div class='pull-right'>
 					<a class='' href="/user/register.html"> &gt;&gt;立即注册 </a>

@@ -8,8 +8,8 @@ moduleI.config(['$stateProvider',function($stateProvider) {
 	
 	// var ctrl = (location.pathname.indexOf("/register.html") > -1) ? 'RegisterCtrl' : 'LoginCtrl';
 	
-	$stateProvider.state('default', mapping("", 'LoginCtrl', "t_login"));
-	$stateProvider.state('home', mapping("/", 'LoginCtrl', "t_login"));
+	$stateProvider.state('default', mapping("?id", 'LoginCtrl', "t_login"));
+	$stateProvider.state('login', mapping("/?id", 'LoginCtrl', "t_login"));
 }]);
 
 moduleC.controller('LoginCtrl', ['$location','$rootScope', '$scope', '$state','$stateParams', '$timeout', 'User', 'Code', function($location, $rootScope, $scope, $state,$stateParams, $timeout, User, Code) {
@@ -18,6 +18,7 @@ moduleC.controller('LoginCtrl', ['$location','$rootScope', '$scope', '$state','$
 	$scope.vcode = {};
 	$scope.user	= {};
 	$scope.userData = User.getUserData(); //获取缓存的登录信息
+    $scope.id = $stateParams.id || "";
 	$scope.images = null; 
 	$scope.hint = "";
 	if (location.pathname.indexOf("/register.html") > -1) {
@@ -36,10 +37,23 @@ moduleC.controller('LoginCtrl', ['$location','$rootScope', '$scope', '$state','$
 	}
 	
 	function init() {
-		$scope.user	= {password: "", uname: $scope.user.uname || "13800009999", error: "", code: "", sms: "", mobile: ""};
+		$scope.user	= {password: "", uname: $scope.user.uname || "13800009999", nickname: "", photo: "", error: "", code: "", sms: "", mobile: ""};
 		$scope.vcode = {title: "获取验证码", sent: false, clickable: true, experied: false, "max-limit": 60, limit: 60}; // limit: timeout 1 minutes
 	}
 	init();
+	if ($scope.id != "") {
+		// TODO
+		if ($scope.action == "register") {
+			$scope.user.nickname = "酷玩前端";
+			$scope.user.photo = "https://itmantos.github.io/favicon.ico";
+		} else {
+			$rootScope.doing("微信登录成功，正在跳转到首页...");
+			User.login($scope.user, function(res) {
+				$timeout(function() {ZCar.openInside("/", true);}, 2000);
+			});
+			
+		}
+	}
 	
 	// 校验手机号和发送状态，控制发送按钮有效无效状态
 	$scope.isClickable = function isClickable() {

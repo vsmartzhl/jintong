@@ -1008,7 +1008,7 @@ moduleI.run(["$rootScope", "$state", "$location", "$document", "$animate", "$mod
 '  <div class="modal-dialog" style="width: 480px; position:fixed; top: 30%;">' + 
 '    <div class="modal-content" movable>' + 
 '' + 
-'    <div class="modal-body"><div class="padding-v15" style="min-height: 50px;"><a class="btn btn-link close" style="position:absolute; right: 0px; top: 0px;" ng-click="$hide()">&times;</a><div class="pull-left"><img src="/img/loading-s.gif" style="width:40px; height:auto;"></div>' + 
+'    <div class="modal-body"><div class="padding-v15" style="min-height: 50px;"><a class="btn btn-link close" style="position:absolute; right: 0px; top: 0px;" ng-click="$hide()">&times;</a>' + 
 '    <div class="pull-left" ng-bind-html="content"></div>' +  
 '</div></div></div>' +  
 '</div></div>';
