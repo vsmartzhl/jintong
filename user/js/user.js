@@ -7,9 +7,27 @@ moduleI.config(['$stateProvider',function($stateProvider) {
 	}
 	
 	// var ctrl = (location.pathname.indexOf("/register.html") > -1) ? 'RegisterCtrl' : 'LoginCtrl';
+	if (location.pathname.indexOf("/center.html") > -1) {
+		$stateProvider.state('center', mapping("{action:[^\?]*}", 'CenterCtrl', "t_center"));
+	} else {
+		$stateProvider.state('default', mapping("?id", 'LoginCtrl', "t_login"));
+		$stateProvider.state('login', mapping("/?id", 'LoginCtrl', "t_login"));
+	}
+}]);
+
+moduleC.controller('CenterCtrl', ['$location','$rootScope', '$scope', '$state','$stateParams', '$timeout', 'User', 'Code', function($location, $rootScope, $scope, $state,$stateParams, $timeout, User, Code) {
+	$scope.action = "login";
+	$scope.step = 0;
+	$scope.vcode = {};
+	$scope.user	= {};
+	$scope.userData = User.getUserData(); //获取缓存的登录信息
+    $scope.id = $stateParams.id || "";
+	$scope.images = null; 
+	$scope.hint = "";
+	$scope.menu = "account";
+	document.title = "账户概览";
 	
-	$stateProvider.state('default', mapping("?id", 'LoginCtrl', "t_login"));
-	$stateProvider.state('login', mapping("/?id", 'LoginCtrl', "t_login"));
+	
 }]);
 
 moduleC.controller('LoginCtrl', ['$location','$rootScope', '$scope', '$state','$stateParams', '$timeout', 'User', 'Code', function($location, $rootScope, $scope, $state,$stateParams, $timeout, User, Code) {
