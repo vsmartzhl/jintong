@@ -8,7 +8,7 @@
 		<li class="pull-right"><a href="/user/register.html" onclick="reopen()"><i class="fa"> 注册</i></a></li>
 	</ul>
 	<ul class="nav navbar-nav pull-right" ng-if="status == 'in'">
-		<li><a href="">{{userData.name || userData.username}}</a></li>
+		<li><a href="/user/center.html" onclick="reopen()">{{userData.name || userData.username}}</a></li>
 		<li><a href="" ng-click="logout()">退出</a></li>
 	</ul>
     <nav id="bs-navbar" class="" ng-class="{hide: inLogin}" ng-if="status == '-'">

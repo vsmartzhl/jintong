@@ -8,18 +8,18 @@
 
 
 <ul class="list-group">
-  <label class="list-group-item  list-group-item-warning">{{menu || "m"}}用户中心</label>
-  <a class="list-group-item" href="#" >账户管理</a>
-  <a class="list-group-item" href="#" >账户概览</a>
-  <a class="list-group-item" href="#" >服务商认证</a>
-  <a class="list-group-item" href="#" >修改密码</a>
-  <a class="list-group-item" href="#" >我的服务</a>
-  <a class="list-group-item" href="#" >创建服务</a>
-  <a class="list-group-item" href="#" >服务管理</a>
-  <a class="list-group-item" href="#" >售出明细</a>
-  <a class="list-group-item" href="#" >已购服务</a>
-  <a class="list-group-item" href="#" >我的订单</a>
-  <a class="list-group-item" href="#" >服务使用情况</a>
+  <label class="list-group-item  list-group-item-warning">用户中心</label>
+  <label class="list-group-item" >账户管理</label>
+  <a class="list-group-item" ng-class="{'active': menu=='account'}" href="#" >账户概览</a>
+  <a class="list-group-item" ng-class="{'active': menu=='validate'}" href="#" >服务商认证</a>
+  <a class="list-group-item" ng-class="{'active': menu=='changepwd'}" href="#" >修改密码</a>
+  <label class="list-group-item" >我的服务</label>
+  <a class="list-group-item" ng-class="{'active': menu=='newservice'}" href="#" >创建服务</a>
+  <a class="list-group-item" ng-class="{'active': menu=='service'}" href="#" >服务管理</a>
+  <a class="list-group-item" ng-class="{'active': menu=='sold'}" href="#" >售出明细</a>
+  <label class="list-group-item" >已购服务</label>
+  <a class="list-group-item" ng-class="{'active': menu=='order'}" href="#" >我的订单</a>
+  <a class="list-group-item" ng-class="{'active': menu=='status'}" href="#" >服务使用情况</a>
 </ul>
 
 <div class="menu_buyer" ng-if="menu.bactive && !userData.dyy">

@@ -10,7 +10,7 @@ moduleC.controller("HeaderCtrl", ["$location","$rootScope", "$scope", "$state", 
     
 
 	// 显示/隐藏右上角的登录按钮
-	if (location.pathname.indexOf("/user") > -1) {
+	if (location.pathname.indexOf("/user") > -1 && location.pathname.indexOf("/user/center") < 0) {
 		$scope.status = "-";
 		$scope.inLogin = !(location.pathname.indexOf("/register.html") > -1);
 	}
