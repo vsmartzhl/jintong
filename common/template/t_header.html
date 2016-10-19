@@ -1,22 +1,21 @@
-<div ng-controller="HeaderCtrl" ng-dblclick ="alert()">
-<div class="well padding0"><div class="container">
-    <div class="navbar-header" ng-if="status == '-'">
-		<a class="navbar-brand" href="/" onclick="reopen()"><img class="fa" src="/common/img/logo.png" style="width: auto; height: 24px;"></a>
-    </div>
-	<ul class="nav navbar-nav pull-right" ng-if="status == 'out'">
-		<li class=""><a href="/user/login.html" onclick="reopen()"><i class="fa" > 登录</i></a></li>
-		<li class="pull-right"><a href="/user/register.html" onclick="reopen()"><i class="fa"> 注册</i></a></li>
-	</ul>
-	<ul class="nav navbar-nav pull-right" ng-if="status == 'in'">
-		<li><a href="/user/center.html" onclick="reopen()">{{userData.name || userData.username}}</a></li>
-		<li><a href="" ng-click="logout()">退出</a></li>
-	</ul>
-    <nav id="bs-navbar" class="" ng-class="{hide: inLogin}" ng-if="status == '-'">
-	<ul class="nav navbar-nav pull-right">
-		<li class="" ><a href="/user/login.html" onclick="reopen()"><i class="fa" style="color: gray; padding-right: 10px;">已有账号 </i><i class="fa" >请登录</i></a></li>
-	</ul>
-    </nav>
-</div></div>
-</div>
 
+<div id="site-header" class="site-header clearfix" ng-controller="HeaderCtrl" ng-dblclick ="alert()"><div class="gtHeader container clearfix">
+	    <div class="gtLogo"><a href="/" onclick="reopen()" class="logo"></a></div>
+	   	<ol class="gtNav" id="site-menu">
+   			<li class="hover active"><a href="/" onclick="reopen()">首页</a><i class="iconNav"></i></li>
+   			<li><a href="#/recommend_found">发现</a><i class="iconNav"></i></li>
+   			
+	   	</ol>
+	   	<div class="pull-right">
+			<ol class="gtNav" style="width: auto;" id="site-menu">
+				<li style="width: auto;" ng-if="status == '-'"><a href="/user/login.html" onclick="reopen()"><i class="fa" style="color: gray; padding-right: 10px;">已有账号 </i><i class="fa" >请登录</i></a></li>
+				<li class="" ng-if="status == 'out'"><a href="/user/login.html" onclick="reopen()"><i class="fa" > 登录</i></a></li>
+				<li class="pull-right" ng-if="status == 'out'"><a href="/user/register.html" onclick="reopen()"><i class="fa"> 注册</i></a></li>
+				<li style="width: auto;" ng-if="status == 'in'"><a href="/user/center.html" onclick="reopen()">{{userData.name || userData.username}} <b>用户中心</b></a></li>
+				<li class="gtMessage" style="width: auto;" ng-if="status == 'in'"><a href="/#/messageCenter" title="消息中心"><i></i></a></li>
+				<li ng-if="status == 'in'"><a href="" ng-click="logout()">退出</a></li>
+				
+			</ol>
+		</div>
+</div></div>
 

@@ -121,26 +121,8 @@
 }
 
 
-header {
-  background: @color-white;
-  padding-bottom: 20px;
-}
-header .navbar {
-  margin-bottom: 0;
-}
 
-.nav a {
-  color: @color-dark-gray;
-}
-header a {
-	padding: 10px !important;
-}
-.nav>li>a:focus, .nav>li>a:hover {
-  background-color: transparent;
-}
-
-html,
-body {
+html, body {
 	height: 100%;
 }
 
@@ -148,21 +130,15 @@ div.body  {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-    margin: 0 auto -172px auto;
-    padding: 0 0 172px 0;
+    margin: 0 auto -225px auto;
+    padding: 0 0 225px 0;
 }
 
 footer {
-  height: 172px !important;
-	background: @baseBgColor;
-  color: @footer-font-color;
-  padding-top: 15px;
-  padding-bottom: 5px;
+  height: 225px !important;
+  overflow-y: hidden;
 }
-footer a, footer a:hover{
-  text-decoration: none;
-  color: @footer-link-color;
-}
+
 
 .icon-in {
     padding-left: 40px;
@@ -348,8 +324,7 @@ ol.carousel-indicators li.active, ol.carousel-indicators li {
   background-color: @background;
   border-color: @border;
 
-  &:focus,
-  &.focus {
+  &:focus,   &.focus {
     color: @color;
     background-color: darken(@background, 10%);
         border-color: darken(@border, 25%);
@@ -359,35 +334,22 @@ ol.carousel-indicators li.active, ol.carousel-indicators li {
     background-color: darken(@background, 10%);
         border-color: darken(@border, 12%);
   }
-  &:active,
-  &.active,
-  .open > .dropdown-toggle& {
+  &:active,   &.active,   .open > .dropdown-toggle& {
     color: @color;
     background-color: darken(@background, 10%);
         border-color: darken(@border, 12%);
 
-    &:hover,
-    &:focus,
-    &.focus {
+    &:hover,     &:focus,     &.focus {
       color: @color;
       background-color: darken(@background, 17%);
           border-color: darken(@border, 25%);
     }
   }
-  &:active,
-  &.active,
-  .open > .dropdown-toggle& {
+  &:active,   &.active,   .open > .dropdown-toggle& {
     background-image: none;
   }
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    &,
-    &:hover,
-    &:focus,
-    &.focus,
-    &:active,
-    &.active {
+  &.disabled,   &[disabled],   fieldset[disabled] & {
+    &,     &:hover,     &:focus,     &.focus,     &:active,     &.active {
       background-color: @background;
           border-color: @border;
     }
@@ -402,3 +364,1575 @@ ol.carousel-indicators li.active, ol.carousel-indicators li {
 
 
 
+
+
+
+// 以下来着金桐
+body, h1, h2, h3, h4, h5, h6, hr, p, dl, dt, dd, ul, ol, li, pre, form, blockquote, fieldset, legend, button, input, textarea, th, td {
+  margin: 0;
+  padding: 0;
+}
+body, button, input, select, textarea {
+  font: 12px/1.5 "\5FAE\8F6F\96C5\9ED1", arial, sans-serif;
+  *line-height: 1.5;
+  font-size: 12px;
+}
+code, kbd, pre, samp {
+  font-family: courier new, courier, monospace;
+}
+/*特殊字符字体*/
+ul, ol {
+  list-style: none;
+}
+fieldset, img {
+  border: 0;
+}
+body {
+  outline: none;
+  position: relative;
+  width: 100%;
+  background-color: #e9eaec;
+}
+input, button, textarea, select, optgroup, option {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  font-size: 100%;
+}
+i, u, b, em, span, small {
+  font-weight: normal;
+  font-style: normal;
+}
+body, p, b, a, u, span, small, em, i {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.clear {
+  clear: both;
+  zoom: 1;
+}
+.clearfix {
+  zoom: 1;
+  display: block;
+}
+.clearfix:after {
+  content: ',';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+/*==默认的链接颜色==*/
+a {
+  color: #1b89d9;
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  color: #3c6fa9;
+  text-decoration: none;
+}
+/*====全局样式结束====*/
+/*向上箭头，类似A，只有三个边，不能指定上边框*/
+i.arrow-up {
+  width: 0px;
+  height: 0px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #1b89d9;
+  /*以下属性可以是IE5兼容*/
+  font-size: 0px;
+  line-height: 0px;
+}
+/*向下箭头 ，类似 V*/
+i.arrow-down {
+  width: 0px;
+  height: 0px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid #1b89d9;
+  font-size: 0px;
+  line-height: 0px;
+}
+/*向左的箭头：只有三个边：上，下，右。而<|总体来看，向左三角形的高=上+下边框的长度。宽=右边框的长度*/
+i.arrow-left {
+  width: 0px;
+  height: 0px;
+  border-bottom: 8px solid transparent;
+  border-top: 8px solid transparent;
+  border-right: 10px solid #1b89d9;
+  font-size: 0px;
+  line-height: 0px;
+}
+/*向右的箭头：只有三个边：上，下，左。而|>总体来看，向右三角形的高=上+下边框的长度。宽=左边框的长度*/
+i.arrow-right {
+  width: 0px;
+  height: 0px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 10px solid #1b89d9;
+  font-size: 0px;
+  line-height: 0px;
+}
+.site-header {
+  background: #2e3035;
+  width: 100%;
+  height: 60px;
+  display: block;
+  position: relative;
+}
+.site-content {
+  margin: 0 auto;
+  display: block;
+  z-index: 0;
+}
+.site-content .site-views-box .site-view-pack {
+  min-height: 500px;
+  position: relative;
+}
+.site-footer {
+  display: block;
+}
+/*右侧悬浮返回顶部按钮开始*/
+.returntop {
+  z-index: 1000;
+  height: 40px;
+  width: 40px;
+  background: url(/public/c/phoenix-fe/0.0.1/common/images/icon_top.png) no-repeat;
+  position: absolute;
+  cursor: pointer;
+  display: none;
+}
+/*右侧悬浮返回顶部按钮结束*/
+.gtHeader {
+  padding: 15px 0;
+//  width: 1000px;
+  font-family: "微软雅黑";
+  font-size: 14px;
+  line-height: 30px;
+  height: 30px;
+  margin: 0 auto;
+}
+.gtHeader .gtLogo {
+  float: left;
+}
+.gtHeader .gtLogo a.logo {
+  background: url(/common/img/xuebitu.png) -319px -65px no-repeat;
+  display: inline-block;
+  width: 220px;
+  height: 30px;
+  float: left;
+  margin-right: 20px;
+}
+.gtHeader .gtNav {
+  float: left;
+  width: 320px;
+  margin-left: 5px;
+}
+.gtHeader .gtNav li {
+  float: left;
+  width: 80px;
+  display: inline-block;
+  text-align: center;
+  position: static;
+}
+.gtHeader .gtNav li a {
+  color: #fff;
+  font-size: 16px;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  text-align: center;
+}
+.gtHeader .gtNav li.active {
+  position: relative;
+}
+.gtHeader .gtNav li.active a {
+  color: #f39700;
+}
+.gtHeader .gtNav li.active i.iconNav {
+  display: inline-block;
+  width: 18px;
+  height: 9px;
+  position: absolute;
+  bottom: -15px;
+  left: 31px;
+  background: url(/common/img/xuebitu.png) -192px -61px no-repeat;
+}
+.gtHeader .gtSearch {
+  display: inline-block;
+  float: left;
+  position: relative;
+  z-index: 10;
+  height: 34px;
+  min-width: 24px;
+  padding: 10px 12px;
+  margin-top: -10px;
+}
+.gtHeader .gtSearch .searchBg {
+  margin: 9px 0px 0 0;
+  width: 185px;
+  height: 34px;
+  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 11;
+}
+.gtHeader .gtSearch .searchBg .searchArea {
+  display: inline-block;
+}
+.gtHeader .gtSearch .searchBg .searchArea input {
+  width: 148px;
+  height: 25px;
+  line-height: 20px;
+  background: #1c1d22;
+  border: none;
+  font-size: 12px;
+  float: left;
+  border-radius: 50px;
+  color: #cfcfcf;
+  position: relative;
+  padding-right: 25px;
+  padding-left: 10px;
+}
+.gtHeader .gtSearch .searchBg .searchArea .sousuo {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-top: 6px;
+  background: url(/common/img/xuebitu.png) no-repeat -27px -214px;
+  cursor: pointer;
+  float: left;
+  position: absolute;
+  right: 10px;
+}
+.gtHeader .gtSearch .gtSearchBtn {
+  display: inline-block;
+  vertical-align: top;
+  width: 18px;
+  height: 18px;
+  margin-top: 6px;
+  background: url(/common/img/xuebitu.png) no-repeat -27px -214px;
+  cursor: pointer;
+}
+.gtHeader .gtNew {
+  display: inline-block;
+  float: left;
+  width: 24px;
+  height: 34px;
+  margin-left: 15px;
+  padding: 10px 12px;
+  text-align: center;
+  position: relative;
+  top: -10px;
+}
+.gtHeader .gtNew span.info {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-top: 6px;
+  font-weight: normal;
+  line-height: 24px;
+  background: url(/common/img/xuebitu.png) no-repeat -52px -216px;
+  cursor: pointer;
+}
+.gtHeader .gtNew ul.list {
+  display: none;
+  position: absolute;
+  z-index: 1001;
+  top: 53px;
+  right: 0px;
+  width: 150px;
+  padding: 8px 0 15px 0;
+  line-height: 34px;
+  text-align: left;
+  background: #313739;
+}
+.gtHeader .gtNew ul.list li a {
+  line-height: 34px;
+  height: 34px;
+  color: #ddd;
+  padding-left: 45px;
+  width: 105px;
+  display: inline-block;
+}
+.gtHeader .gtNew ul.list li a:hover {
+  background: #1d2122;
+  text-decoration: none;
+}
+.gtHeader .gtNew:hover {
+  background: #313739;
+}
+.gtHeader .gtNew:hover ul.list {
+  display: block;
+}
+.gtHeader .gtInfo {
+  float: left;
+  position: relative;
+}
+.gtHeader .gtInfo .info {
+  padding-left: 10px;
+  padding-right: 26px;
+}
+.gtHeader .gtInfo a {
+  color: #fff;
+  display: inline-block;
+  max-width: 72px;
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: -2px;
+  vertical-align: middle;
+}
+.gtHeader .gtInfo .icons {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 5px;
+  top: 8px;
+  background: url(/common/img/xuebitu.png) -119px -57px no-repeat;
+}
+.gtHeader .gtInfo .list {
+  display: none;
+  position: absolute;
+  z-index: 1001;
+  right: 0px;
+  top: 53px;
+  width: 150px;
+  padding: 8px 0 10px 0px;
+  background: #313739;
+}
+.gtHeader .gtInfo .list li a {
+  display: inline-block;
+  height: 34px;
+  line-height: 34px;
+  width: 105px;
+  padding-left: 45px;
+  max-width: 105px;
+}
+.gtHeader .gtInfo .list li a:hover {
+  background: #1d2122;
+  text-decoration: none;
+}
+.gtHeader .gtInfo.nohover {
+  color: #fff;
+}
+.gtHeader .gtInfo.nohover a {
+  margin: 0 8px;
+}
+.gtHeader .gtInfo.curr:hover, .gtHeader .gtInfo.curr.hover {
+  background: #313739;
+  top: -10px;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  height: 35px;
+}
+.gtHeader .gtInfo.curr:hover .icons, .gtHeader .gtInfo.curr.hover .icons {
+  top: 18px;
+}
+.gtHeader .gtInfo.curr:hover .icons, .gtHeader .gtInfo.curr.hover .icons {
+  background: url(/common/img/xuebitu.png) -136px -55px no-repeat;
+}
+.gtHeader .gtInfo.curr:hover .list {
+  display: block;
+}
+.gtHeader .gtorgan {
+  display: inline-block;
+  float: left;
+  height: 34px;
+  padding: 10px 12px;
+  text-align: center;
+  position: relative;
+  top: -10px;
+}
+.gtHeader .gtorgan a {
+  display: inline-block;
+  color: #FFFFFF;
+}
+.gtHeader .gtorgan a i {
+  background: url(/common/img/xuebitu.png) no-repeat -80px -216px;
+}
+.gtHeader .gtorgan a i {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -2px;
+  margin-right: 5px;
+}
+.footer {
+  padding: 25px 0 30px;
+  border-top: 1px solid #dbdbdb;
+  font-size: 14px;
+  line-height: 14px;
+  color: #b1b1b1;
+  font-family: '微软雅黑';
+  background: #494949;
+  line-height: 30px;
+  text-align: center;
+}
+.footer h3, .footer h4 {
+  font-size: 14px;
+  font-weight: normal;
+}
+.footer .ft_left {
+  width: 360px;
+  height: 184px;
+  float: left;
+  background: url(/public/c/phoenix-fe/0.0.1/site/images/fb_line.png) no-repeat 345px;
+}
+.footer .nobr {
+  border-right: 0;
+}
+.footer .ft_p1 {
+  padding: 5px 0 15px;
+}
+.footer a {
+  padding: 0 30px;
+  color: #b1b1b1;
+  cursor: pointer;
+}
+.footer a:hover, .footer a:active {
+  color: #fff;
+}
+.footer img {
+  border: none;
+}
+.footer .w980 {
+  margin: 0 auto;
+  width: 1000px;
+}
+.footer .ft_right {
+  float: right;
+  width: 610px;
+  height: 184px;
+  text-align: left;
+}
+.footer .ft_right .ft_num {
+  margin-left: 30px;
+}
+.footer .ft_right dl {
+  margin-left: 30px;
+}
+.footer .ft_right dl h3 {
+  line-height: 36px;
+  padding-left: 28px;
+  background: url(/public/c/phoenix-fe/0.0.1/site/images/ft_img_2.png) no-repeat left center;
+  text-align: left;
+  margin: 0px;
+}
+.footer .ft_right dl h4 {
+  line-height: 36px;
+  padding-left: 28px;
+  background: url(/public/c/phoenix-fe/0.0.1/site/images/ft_img_1.png) no-repeat left center;
+  text-align: left;
+  margin: 0px;
+}
+.footer .ft_right dl dt {
+  float: left;
+  width: 260px;
+  margin: 0;
+}
+.footer .ft_right dl dd {
+  float: right;
+  width: 280px;
+  margin-left: 0px;
+  padding-top: 10px;
+  text-align: left;
+}
+.footer .ft_right dl dd a {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.footer .ft_right dl dd a img {
+  margin-left: 0px;
+}
+.footer .ft_right dl dd a.x-add1 {
+  position: relative;
+  z-indx: 0;
+  margin-left: 32px;
+}
+.footer .ft_right dl dd a.x-add1 img {
+  margin-right: 7px;
+  margin-left: 0px;
+}
+.footer .ft_right dl dd .wS {
+  position: absolute;
+  left: -66px;
+  bottom: 62px;
+  cursor: pointer;
+  display: none;
+  z-index: 1;
+}
+.footer .ft_right dl dd a.x-add1:hover .wS {
+  display: inline;
+}
+/*页面加载*/
+.pageLoading {
+  text-align: center;
+  padding: 0;
+  margin: 0 auto;
+  clear: both;
+  position: relative;
+  height: 80px;
+  width: 100%;
+  left: 0;
+  top: 80px;
+}
+.pageLoading p {
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+  color: #808080;
+}
+.pageLoading .iconPageLoading {
+  display: inline-block;
+  background: url(/public/c/phoenix-fe/0.0.1/bootstrap/img/iconLoading.gif) no-repeat;
+  width: 32px;
+  height: 32px;
+}
+.listLoadingInfo {
+  text-align: center;
+  padding: 20px 0;
+  line-height: 32px;
+  min-height: 250px;
+}
+.listLoadingInfo.loading .iconLoading {
+  display: inline-block;
+  vertical-align: middle;
+  background: url(/public/c/phoenix-fe/0.0.1/bootstrap/img/iconLoading.gif) no-repeat center;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+/* LiuShuo begin */
+.socialArea {
+  width: 240px;
+  position: fixed;
+  z-index: 1000000000;
+  top: 100px;
+  bottom: 0px;
+  right: -242px;
+}
+.chatNewsTips {
+  width: 210px;
+  position: fixed;
+  z-index: 1000000000;
+  bottom: 210px;
+  left: 0px;
+}
+.chatNewsTips img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.chatNewsTips .chatNewsTipsSpan {
+  position: absolute;
+  left: 22px;
+  top: 6px;
+  color: #6C6C6C;
+  font-size: 12px;
+}
+.chatNewsTips .chatNewsTipsNumSpan {
+  color: #ff3b30;
+  font-size: 12px;
+}
+/* LiuShuo end */
+label.error {
+  color: #f00;
+}
+.gtMessage {
+  float: left;
+}
+.gtMessage a i {
+  width: 20px;
+  height: 25px;
+  background: url(/common/img/xuebitu.png) no-repeat -2px -213px;
+  margin-top: 2px;
+  margin-left: 15px;
+  display: inline-block;
+}
+/*第一次教学*/
+.new_orgusr {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  top: 59px;
+  left: 0;
+  z-index: 9999;
+}
+.new_orgusr .tishi_box {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.new_orgusr .tishi_box .box {
+  position: absolute;
+  right: 30px;
+  top: 0;
+  width: 269px;
+  height: 187px;
+  overflow: hidden;
+}
+.new_orgusr .tishi_box .box .tishi_ico {
+  background: url(/public/c/phoenix-fe/0.0.1/site/images/gt_yindao.png) no-repeat;
+}
+.new_orgusr .tishi_box .box .closebtn_ico {
+  background: url(/public/c/phoenix-fe/0.0.1/site/images/delete2.png) no-repeat;
+}
+.new_orgusr .tishi_box .box .tishi_ico {
+  width: 269px;
+  height: 187px;
+  overflow: hidden;
+  display: block;
+}
+.new_orgusr .tishi_box .box .closebtn_ico {
+  width: 15px;
+  height: 15px;
+  overflow: hidden;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 80px;
+  cursor: pointer;
+}
+.contentInnerText {
+  line-height: 30px;
+  font-size: 12px;
+}
+.contentInnerText li {
+  line-height: 28px;
+  cursor: pointer;
+}
+.contentInnerText li:hover {
+  background: #ddd;
+}
+.contentInnerText li.line {
+  margin: 5px auto;
+  height: 0px;
+  line-height: 31px;
+  overflow: hidden;
+  border-top: #e1e1e1 solid 1px;
+}
+
+
+/*
+个人中心页面 原资源管理页面
+修改日期：2015-11-05 
+*/
+button:focus {
+  outline: none!important;
+}
+.wrapper_content {
+//  width: 1000px;
+  margin: 0 auto;
+  padding-top: 17px;
+  padding-bottom: 20px;
+  font-family: "微软雅黑";
+  /*header*/
+  /*nav*/
+  /*content Left*/
+  /*content Right*/
+  /*人脉列表样式开始*/
+  /*人脉列表样式结束*/
+  /*需求列表样式开始*/
+  /*需求列表样式结束*/
+  /* 知识列表样式开始*/
+  /*知识列表样式结束*/
+  /*活动列表样式开始*/
+  /*活动列表样式结束*/
+}
+.wrapper_content .header {
+  height: 116px;
+  padding-left: 35px;
+  padding-top: 44px;
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/header_03.png") no-repeat center right;
+  background-color: #ffffff;
+}
+.wrapper_content .headImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  overflow: hidden;
+  margin-right: 25px;
+}
+.wrapper_content .head_left div {
+  float: left;
+}
+.wrapper_content .userName {
+  font-size: 16px;
+  padding-right: 26px;
+  line-height: 34px;
+}
+.wrapper_content .boy {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_2.png") center right no-repeat;
+}
+.wrapper_content .girl i {
+  background: url(/public/c/phoenix-fe/0.0.1/common/images/xuebitu.png) -228px -2px no-repeat;
+  width: 20px;
+  height: 22px;
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+.wrapper_content .compile {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_3.png") center right no-repeat;
+  padding-right: 26px;
+  margin-right: 57px;
+}
+.wrapper_content .set {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_4.png") center right no-repeat;
+  padding-right: 26px;
+}
+.wrapper_content .nav {
+  height: 40px;
+  background-color: #ffffff;
+  margin-top: 10px;
+  padding-left: 16px;
+  margin-bottom: 10px;
+}
+.wrapper_content .nav li {
+  height: 37px;
+  line-height: 37px;
+  float: left;
+  padding: 0 4px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 40px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.wrapper_content .nav li.active {
+  border-bottom: 3px solid @color-golden;
+  color: @color-golden;
+}
+.cont_left {
+  width: 200px;
+  background-color: #ffffff;
+  float: left;
+  overflow: hidden;
+}
+.cont_left ul {
+  width: 200px;
+  clear: both;
+  position: relative;
+  overflow: hidden;
+  margin-top: -1px;
+}
+.cont_left ul li {
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid #f4f4f4;
+}
+.cont_left ul li div {
+  margin: 0 auto;
+  cursor: pointer;
+  display: block;
+}
+.cont_left ul li div.divider {
+  background-color: @color-light-gray;
+  cursor: default;
+}
+
+.cont_left ul li div:hover {
+  background-color: @color-light-gray;
+}
+.cont_left ul li div .icon {
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  vertical-align: middle;
+//  margin-left: 27px;
+}
+.cont_left ul li div span {
+  text-align: center;
+  display: inline-block;
+//  width: 50px;
+  line-height: 50px;
+  margin-left: 30px;
+  font-size: 14px;
+}
+.cont_left ul .l_person div .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -89px -48px;
+}
+.cont_left ul .tissue div .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -89px -94px;
+}
+.cont_left ul .demand div .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -89px -140px;
+}
+.cont_left ul .knowledge div .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -89px -186px;
+}
+.cont_left ul .activity div .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -89px -232px;
+}
+.cont_left ul .association div .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -89px -278px;
+}
+.cont_left ul .l_person div:hover .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -48px -48px;
+}
+.cont_left ul .tissue div:hover .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -48px -94px;
+}
+.cont_left ul .demand div:hover .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -48px -140px;
+}
+.cont_left ul .knowledge div:hover .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -48px -186px;
+}
+.cont_left ul .activity div:hover .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -48px -232px;
+}
+.cont_left ul .association div:hover .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -48px -278px;
+}
+.cont_left ul .l_person.active div .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -6px -48px;
+}
+.cont_left ul .tissue.active div .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -6px -94px;
+}
+.cont_left ul .demand.active div .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -6px -140px;
+}
+.cont_left ul .knowledge.active div .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -6px -186px;
+}
+.cont_left ul .activity.active div .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -6px -232px;
+}
+.cont_left ul .association.active div .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_.png") no-repeat;
+  background-position: -6px -278px;
+}
+.cont_left ul li.active span {
+  color: #1b89d9;
+}
+.wrapper_content .complete,
+.wrapper_content .getChilren {
+  display: inline-block;
+  max-width: 70px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  line-height: 20px;
+}
+.wrapper_content #checkAll {
+  vertical-align: middle;
+  margin: 0;
+  margin-right: 10px;
+}
+.wrapper_content .cont_wrapper {
+	width: 100%; 
+	margin-left: 210px; 
+	padding-left: -210px;
+}
+.wrapper_content .cont_right {
+  padding-top: 13px;
+//  width: 790px;
+  width: 100%;
+  background-color: #ffffff;
+  float: right;
+}
+.wrapper_content .cr_header .caozuo {
+  height: 43px;
+  border-bottom: 1px solid #f4f4f4;
+  padding: 0 20px;
+}
+.wrapper_content .cr_header .caozuo button {
+  float: left;
+  padding: 6px 11px;
+  margin-right: 20px;
+  cursor: pointer;
+  border-radius: 2px;
+  border: none;
+  background-color: #ffffff;
+}
+.wrapper_content .cr_header .caozuo button:hover {
+  background-color: #3c6fa9;
+  color: #ffffff;
+}
+.wrapper_content .cr_header .caozuo .catalogue_icon:hover span {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_31.png") no-repeat;
+}
+.wrapper_content .cr_header .caozuo .catalogue_icon span {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/mulu_07.png") no-repeat;
+  display: block;
+  width: 13px;
+  height: 16px;
+  float: left;
+  margin-right: 13px;
+}
+.wrapper_content .cr_header .caozuo button i {
+  line-height: 16px;
+  display: block;
+  float: left;
+}
+.wrapper_content .cr_header .caozuo .catalogue_icon.active {
+  background-color: #1b89d9;
+  color: #ffffff;
+}
+.wrapper_content .cr_header .caozuo .catalogue_icon.active span {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_31.png") no-repeat;
+}
+.wrapper_content .cret_mulu {
+  display: none;
+  float: right;
+  border-radius: 2px;
+  width: 58px;
+  height: 30px;
+  font-size: 14px;
+  padding-left: 34px;
+  padding-right: 10px;
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/cretmulu.png") no-repeat 10px;
+  line-height: 30px;
+  /* text-align: center; */
+  cursor: pointer;
+}
+.wrapper_content .cret_mulu:hover {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/muluhover.png") #3c6fa9 no-repeat 10px;
+  color: #ffffff;
+}
+.wrapper_content .cret_biaoqian {
+  display: none;
+  border-radius: 2px;
+  float: right;
+  width: 58px;
+  height: 30px;
+  font-size: 14px;
+  padding-left: 34px;
+  padding-right: 10px;
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_32.png") no-repeat 10px;
+  line-height: 30px;
+  /* text-align: center; */
+  cursor: pointer;
+}
+.wrapper_content .cret_biaoqian:hover {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_35.png") #3c6fa9 no-repeat 10px;
+  color: #ffffff;
+}
+.wrapper_content .cr_header .caozuo .label_icon:hover span {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_35.png") no-repeat;
+}
+.wrapper_content .cr_header .caozuo .label_icon span {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_32.png") no-repeat;
+  display: block;
+  width: 16px;
+  height: 16px;
+  float: left;
+  margin-right: 13px;
+}
+.wrapper_content .cr_header .caozuo .label_icon.active {
+  background-color: #1b89d9;
+  color: #ffffff;
+}
+.wrapper_content .cr_header .caozuo .label_icon.active span {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_35.png") no-repeat;
+}
+.wrapper_content .head_nav {
+  padding-left: 46px;
+  padding-right: 20px;
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_33.png") no-repeat 12px 4px;
+}
+.wrapper_content .head_nav .all {
+  color: #1b89d9;
+  line-height: 32px;
+}
+.wrapper_content .head_nav .retreat {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_34.png") no-repeat;
+  width: 16px;
+  height: 10px;
+  display: block;
+  float: left;
+  margin-right: 10px;
+  margin-top: 6px;
+  display: none;
+}
+.wrapper_content .operation {
+  height: 40px;
+  padding: 0 20px;
+  background-color: #f4f7f8;
+}
+.wrapper_content .choice .sort {
+  float: right;
+}
+.wrapper_content .choice .sort a {
+  color: #666;
+  line-height: 40px;
+  cursor: pointer;
+}
+.wrapper_content .choice .sort .hover {
+  color: #3996fd;
+}
+.wrapper_content .select_search {
+  float: right;
+  display: block;
+  position: relative;
+  height: 40px;
+  line-height: 36px;
+  vertical-align: middle;
+}
+.wrapper_content .select_search select {
+  margin-left: 20px;
+  height: 30px;
+  border: 1px solid #ccc;
+  background: #ffffff url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/sanjiao.png") no-repeat 80px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  width: 100px;
+  padding-left: 10px;
+  font-size: 12px;
+  line-height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.wrapper_content .select_search .search {
+  display: inline-block;
+  vertical-align: middle;
+}
+.wrapper_content .select_search .search input {
+  font-size: 12px;
+  border: 1px solid #ccc;
+  height: 28px;
+  width: 158px;
+  padding: 0;
+  float: left;
+  border-right: 0;
+  border-radius: 2px 0 0 2px;
+  padding-left: 10px;
+}
+.wrapper_content .select_search .search span {
+  width: 30px;
+  height: 30px;
+  background: url('/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/search.png') center no-repeat;
+  display: block;
+  float: left;
+  cursor: pointer;
+}
+.wrapper_content .association_header {
+  padding: 0 20px;
+  display: none;
+}
+.wrapper_content .association_header .select_search {
+  line-height: 60px;
+}
+.wrapper_content .association_header h3 {
+  display: inline-block;
+  line-height: 60px;
+  font-size: 14px;
+  color: #525151;
+}
+.wrapper_content .p_list {
+  border-bottom: 1px solid #e5e5e5;
+  height: 55px;
+  width: 100%;
+}
+.wrapper_content .p_list span {
+  display: inline-block;
+  color: #4d4d4d;
+}
+.wrapper_content .p_list .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_26.png") no-repeat;
+  vertical-align: middle;
+  margin-left: 12px;
+  display: inline-block;
+  width: 18px;
+  height: 12px;
+}
+.wrapper_content .p_list input {
+  vertical-align: middle;
+  margin: 0px 20px 0 20px;
+}
+.wrapper_content .p_list a {
+  line-height: 55px;
+  color: #4d4d4d;
+  text-decoration: none;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+  display: inline-block;
+  max-width: 120px;
+}
+.wrapper_content .p_list .a_t {
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 150px;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.wrapper_content .p_list .list_name {
+  width: 345px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.wrapper_content .p_list .openChatCommunity {
+  background-color: #1b89d9;
+  border: none;
+  color: #FFF;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 250px;
+}
+.wrapper_content .p_list:hover {
+  background: #e2e6ee;
+}
+.wrapper_content .p_list:hover span,
+.wrapper_content .p_list:hover a {
+  color: #000000;
+}
+.wrapper_content .p_list:hover .icon {
+  background: url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/icon_27.png") no-repeat;
+}
+.wrapper_content .association_list ul li {
+  border-bottom: 1px solid #ececed;
+  min-height: 30px;
+  padding: 16px 25px;
+}
+.wrapper_content .association_list ul li img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  float: left;
+  margin: 0px 18px 0 20px;
+}
+.wrapper_content .association_list ul li div {
+  display: inline-block;
+  float: left;
+  width: 540px;
+}
+.wrapper_content .association_list ul li div h3 {
+  font-size: 14px;
+  color: #4d4d4d;
+  line-height: 36px;
+  cursor: pointer;
+}
+.wrapper_content .association_list ul li div p {
+  font-size: 12px;
+  color: #6c6c6c;
+  width: 600px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.wrapper_content .association_list ul li .openChatCommunity {
+  padding: 2px 25px;
+  line-height: 22px;
+}
+.wrapper_content .association_list li:hover {
+  background-color: #e2e6ee;
+}
+.wrapper_content .demand_list {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+  display: block;
+  height: 55px;
+  line-height: 55px;
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.wrapper_content .demand_list .d_check_box {
+  display: inline-block;
+  padding: 0 20px;
+}
+.wrapper_content .demand_list .d_check_box .d_list {
+  vertical-align: middle;
+}
+.wrapper_content .demand_list .d_ico_box {
+  display: inline-block;
+  padding-right: 10px;
+}
+.wrapper_content .demand_list .d_ico_box .i_demand_ico {
+  cursor: pointer;
+  height: 18px;
+  width: 33px;
+  color: #f98512;
+  font-size: 12px;
+  text-align: center;
+  line-height: 18px;
+  vertical-align: middle;
+  display: inline-block;
+  border: 1px solid #f98512;
+}
+.wrapper_content .demand_list .d_ico_box .i_demand_ico_blue {
+  cursor: pointer;
+  height: 18px;
+  width: 33px;
+  color: #3da9f7;
+  font-size: 12px;
+  text-align: center;
+  line-height: 18px;
+  vertical-align: middle;
+  display: inline-block;
+  border: 1px solid #3da9f7;
+}
+.wrapper_content .demand_list .d_list_title {
+  display: inline-block;
+}
+.wrapper_content .demand_list .d_list_title a {
+  display: inline-block;
+  width: 400px;
+  color: #4d4d4d;
+  height: 55px;
+  line-height: 55px;
+  vertical-align: middle;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.wrapper_content .demand_list .d_list_title a:hover {
+  color: #4d4d4d;
+}
+.wrapper_content .demand_list .d_list_time {
+  display: inline-block;
+  float: right;
+  margin-right: 60px;
+}
+.wrapper_content .demand_list:hover {
+  background-color: #e2e6ee;
+  color: #000000;
+}
+.wrapper_content .demand_list:hover .d_list_title a {
+  color: #4d4d4d;
+}
+.wrapper_content .demand_list:hover .d_list_title a:hover {
+  color: #4d4d4d;
+}
+.wrapper_content .i_catalog_ico {
+  cursor: pointer;
+  background: url(/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/mulu_03.png) no-repeat;
+  width: 25px;
+  height: 20px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.wrapper_content .i_label_ico {
+  cursor: pointer;
+  background: url(/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/biaoqian_03.png) no-repeat;
+  width: 25px;
+  height: 20px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.wrapper_content .knowledge_list {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+  display: block;
+  height: 55px;
+  line-height: 55px;
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.wrapper_content .knowledge_list .k_check_box {
+  display: inline-block;
+  padding: 0 20px;
+}
+.wrapper_content .knowledge_list .k_check_box .k_list {
+  vertical-align: middle;
+}
+.wrapper_content .knowledge_list .k_list_title {
+  display: inline-block;
+}
+.wrapper_content .knowledge_list .k_list_title a {
+  display: inline-block;
+  width: 400px;
+  color: #4d4d4d;
+  height: 55px;
+  line-height: 55px;
+  vertical-align: middle;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.wrapper_content .knowledge_list .k_list_title a:hover {
+  color: #4d4d4d;
+}
+.wrapper_content .knowledge_list .k_list_time {
+  display: inline-block;
+  float: right;
+  margin-right: 60px;
+}
+.wrapper_content .knowledge_list:hover {
+  background-color: #e2e6ee;
+  color: #000000;
+}
+.wrapper_content .knowledge_list:hover .k_list_title a {
+  color: #4d4d4d;
+}
+.wrapper_content .knowledge_list:hover .k_list_title a:hover {
+  color: #4d4d4d;
+}
+.wrapper_content .activity_list {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+  display: block;
+  height: 55px;
+  line-height: 55px;
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.wrapper_content .activity_list .a_check_box {
+  display: inline-block;
+  padding: 0 20px;
+}
+.wrapper_content .activity_list .a_check_box .a_list {
+  vertical-align: middle;
+}
+.wrapper_content .activity_list .a_ico_box {
+  display: inline-block;
+  padding-right: 10px;
+}
+.wrapper_content .activity_list .a_ico_box .i_activity_ico {
+  height: 18px;
+  width: 42px;
+  color: #f07643;
+  font-size: 12px;
+  text-align: center;
+  line-height: 18px;
+  vertical-align: middle;
+  display: inline-block;
+  border: 1px solid #f07643;
+}
+.wrapper_content .activity_list .a_ico_box .i_activity_ico_red {
+  height: 18px;
+  width: 42px;
+  color: #e75151;
+  font-size: 12px;
+  text-align: center;
+  line-height: 18px;
+  vertical-align: middle;
+  display: inline-block;
+  border: 1px solid #e75151;
+}
+.wrapper_content .activity_list .a_ico_box .i_activity_ico_hui {
+  height: 18px;
+  width: 42px;
+  color: #999999;
+  font-size: 12px;
+  text-align: center;
+  line-height: 18px;
+  vertical-align: middle;
+  display: inline-block;
+  border: 1px solid #999999;
+}
+.wrapper_content .activity_list .a_list_title {
+  display: inline-block;
+}
+.wrapper_content .activity_list .a_list_title a {
+  display: inline-block;
+  width: 400px;
+  color: #4d4d4d;
+  height: 55px;
+  line-height: 55px;
+  vertical-align: middle;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.wrapper_content .activity_list .a_list_title a:hover {
+  color: #4d4d4d;
+}
+.wrapper_content .activity_list .a_list_time {
+  display: inline-block;
+  float: right;
+  margin-right: 60px;
+}
+.wrapper_content .activity_list:hover {
+  background-color: #e2e6ee;
+  color: #000000;
+}
+.wrapper_content .activity_list:hover .a_list_title a {
+  color: #4d4d4d;
+}
+.wrapper_content .activity_list:hover .a_list_title a:hover {
+  color: #4d4d4d;
+}
+.wrapper_content .operate {
+  display: none;
+}
+.wrapper_content .operate input {
+  width: 78px;
+  height: 28px;
+  border: 1px solid #c8c8c8;
+  float: left;
+  margin-right: 10px;
+  margin-top: 5px;
+  text-align: left;
+  background-color: #ffffff;
+  padding-left: 28px;
+  border-radius: 2px;
+}
+.wrapper_content .operate .rechristen {
+  background: #ffffff url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/bianji.png") no-repeat 10px;
+}
+.wrapper_content .operate .rechristen:hover {
+  background: #3c6fa9 url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/bianji_h.png") no-repeat 10px;
+  color: #ffffff;
+}
+.wrapper_content .operate .dele {
+  background: #ffffff url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/shanchu.png") no-repeat 10px;
+}
+.wrapper_content .operate .dele:hover {
+  background: #3c6fa9 url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/shanchu_h.png") no-repeat 10px;
+  color: #ffffff;
+}
+.wrapper_content .operate .transmit {
+  background: #ffffff url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/zhuanfa.png") no-repeat 10px;
+}
+.wrapper_content .operate .transmit:hover {
+  background: #3c6fa9 url("/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/zhaunfa_h.png") no-repeat 10px;
+  color: #ffffff;
+}
+.wrapper_content .pages {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  float: left;
+  position: relative;
+  left: 50%;
+}
+.wrapper_content .pages ul {
+  position: relative;
+  left: -50%;
+}
+.wrapper_content .pages ul li {
+  text-align: center;
+  border: 1px solid #ccc;
+  float: left;
+  margin-left: 6px;
+  cursor: pointer;
+  min-width: 12px;
+  color: #888;
+  padding: 0 8px;
+  font-size: 12px;
+  height: 28px;
+  line-height: 28px;
+}
+.wrapper_content .pages ul li:hover {
+  border: 1px solid #fcbe80;
+  background: #fdf3e8;
+}
+.wrapper_content .pages ul li.now {
+  background: #6d6d6d;
+  color: #fff;
+  border: 1px solid #6d6d6d;
+}
+.wrapper_content .tanchuang {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.wrapper_content .tanchuang div {
+  position: fixed;
+  left: 50%;
+  margin-left: -290px;
+  top: 50%;
+  height: 280px;
+  width: 580px;
+  margin-top: -140px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.wrapper_content .tanchuang input {
+  margin: 0;
+  width: 80%;
+}
+.wrapper_content .t_top {
+  font-size: 18px;
+  padding: 12px;
+  background-color: #f3f3f3;
+  border-radius: 4px 4px 0 0;
+  padding-bottom: 10px;
+}
+.wrapper_content .t_top span:last-child {
+  float: right;
+  font-size: 26px;
+  cursor: pointer;
+  line-height: 15px;
+}
+.wrapper_content .tanchuang button {
+  width: 82px;
+  background: url(/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/qd.png) no-repeat;
+  border-radius: 3px;
+  height: 35px;
+  border: 0;
+  float: left;
+  color: #fff;
+  margin-top: 60px;
+}
+.wrapper_content .tanchuang button:last-child,
+.wrapper_content #create {
+  margin-left: 14px;
+}
+.wrapper_content button.closex {
+  background: url(/public/c/phoenix-fe/0.0.1/pages/personalCenter/images/qs.png) no-repeat;
+}
+#popup_container {
+  top: 50%!important;
+  margin-top: -90px !important;
+  position: fixed!important;
+}
+.head_left_bianji {
+  height: 20px;
+  line-height: 20px;
+}

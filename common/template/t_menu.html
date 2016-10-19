@@ -1,44 +1,18 @@
-<div class="" ng-class='menu.css' id="menu-zone">
-	<div class="row " >
-	<div class="menu" style="margin:0 15px" >
-		<ul class="nav nav-tabs" ng-class="{'nav-header': !menu.b || !menu.s}" id="menu-list">
-			<li class="menu-b" role="presentation" ng-if="menu.b"> <a ng-class="{'active': menu.bactive}" href="/buyer.html" onclick="setRole('buyer')" >买家</a> </li>
-		    <li class="menu-s" role="presentation" ng-if="menu.s"> <a ng-class="{'active': menu.sactive}" href="/seller.html" onclick="setRole('seller')" >卖家</a> </li>
-		</ul>
-
-
-<ul class="list-group">
-  <label class="list-group-item  list-group-item-warning">用户中心</label>
-  <label class="list-group-item" >账户管理</label>
-  <a class="list-group-item" ng-class="{'active': menu=='account'}" href="#" >账户概览</a>
-  <a class="list-group-item" ng-class="{'active': menu=='validate'}" href="#" >服务商认证</a>
-  <a class="list-group-item" ng-class="{'active': menu=='changepwd'}" href="#" >修改密码</a>
-  <label class="list-group-item" >我的服务</label>
-  <a class="list-group-item" ng-class="{'active': menu=='newservice'}" href="#" >创建服务</a>
-  <a class="list-group-item" ng-class="{'active': menu=='service'}" href="#" >服务管理</a>
-  <a class="list-group-item" ng-class="{'active': menu=='sold'}" href="#" >售出明细</a>
-  <label class="list-group-item" >已购服务</label>
-  <a class="list-group-item" ng-class="{'active': menu=='order'}" href="#" >我的订单</a>
-  <a class="list-group-item" ng-class="{'active': menu=='status'}" href="#" >服务使用情况</a>
-</ul>
-
-<div class="menu_buyer" ng-if="menu.bactive && !userData.dyy">
-    <dl class="">
-		<dt>交易中心</dt>
-		<!--dd class=""><a href="javascript:;">采购单管理</a></dd -->
-		<dd class=""><a href="" ng-click="goPage('/buyer.html#/qorder')">询价单管理</a></dd>
-		<dd class=""><a href="" ng-click="goPage('/buyer.html#/orders')">订单管理</a></dd>
-		<dd class=""><a href="" ng-click="goPage('/buyer.html#/discount')">优惠券管理</a></dd>
-	</dl>
-	<dl class="">
-		<dt>系统设置 </dt>
-		<dd class="" ng-if="powerful"><a href="" ng-click="goPage('/buyer.html#/security')">模块密码管理</a></dd>
-		<dd class="" ng-if="powerful"><a href="" ng-click="goPage('/buyer.html#/employee')">子账户管理</a></dd>
-		<dd class=""><a href="" ng-click="goPage('/buyer.html#/password')">登录密码管理</a></dd>
-	</dl>
-</div>
-	</div>
-	</div>
+<div class="cont_left">
+	<ul>
+		<li href="#" ><div><span>用户中心</span></div></li>
+		<li href="#" ><div class="divider"><span>账户管理</span></div></li>
+		<li ng-class="{'active': menu=='account'}" href="#" ><div><i class="icon"></i><span>账户概览</span></div></li>
+		<li ng-class="{'active': menu=='validate'}" href="#" ><div><i class="icon"></i><span>服务商认证</span></div></li>
+		<li ng-class="{'active': menu=='changepwd'}" href="#" ><div><i class="icon"></i><span>修改密码</span></div></li>
+		<li href="#" ><div class="divider"><span>我的服务</span></div></li>
+		<li ng-class="{'active': menu=='newservice'}" href="#" ><div><i class="icon"></i><span>创建服务</span></div></li>
+		<li ng-class="{'active': menu=='service'}" href="#" ><div><i class="icon"></i><span>服务管理</span></div></li>
+		<li ng-class="{'active': menu=='sold'}" href="#" ><div><i class="icon"></i><span>售出明细</span></div></li>
+		<li href="#"><div class="divider"><span>已购服务</span></div></li>
+		<li ng-class="{'active': menu=='order'}" href="#" ><div><i class="icon"></i><span>我的订单</span></div></li>
+		<li ng-class="{'active': menu=='status'}" href="#" ><div><i class="icon"></i><span>服务使用情况</span></div></li>
+	</ul>
 </div>
 
 <script type="text/javascript">
