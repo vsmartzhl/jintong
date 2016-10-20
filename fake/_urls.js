@@ -19,8 +19,33 @@ var urlFake = {
 	"/result/failed": "fake/failed.json", 
     "/result/success":"fake/success.json"
 };
+
 module.exports = {
-	get: function(url) { 
+	get: function(url, method) { 
+		method = method || "";
+		
+		if (url.indexOf("/fake/") > -1) {
+			return url;
+		}
+		
+		switch(method.toLowerCase()) {
+			case "put":
+				url = "/fake/put.json";
+			break;
+			case "post":
+//				url = "/fake/post.json";
+			break;
+			case "delete":
+				url = "/fake/delete.json";
+			break;
+			default:
+			break;
+		}
+		if (url.indexOf("/fake/") > -1) {
+			console.log(" to " + url);
+			return url;
+		}
+		
 		var key = url.split("?")[0].split("/");
 		console.log(key.length + ": [" + key.join("_") + "]");
 		if (key.length > 2) {
@@ -29,6 +54,7 @@ module.exports = {
 			key = "/" + key[1];
 		}
 		if (key == "/") {
+			console.log(" to /index.html");
 			return "/index.html";
 		}
 		
