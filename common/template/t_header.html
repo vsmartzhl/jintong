@@ -12,7 +12,7 @@
 				<li class="" ng-if="status == 'out'"><a href="/user/login.html" onclick="reopen()"><i class="fa" > 登录</i></a></li>
 				<li class="pull-right" ng-if="status == 'out'"><a href="/user/register.html" onclick="reopen()"><i class="fa"> 注册</i></a></li>
 				<li style="width: auto;" ng-if="status == 'in'"><a href="/user/center.html" onclick="reopen()">{{userData.name || userData.username}} <b>用户中心</b></a></li>
-				<li class="gtMessage" style="width: auto;" ng-if="status == 'in'"><a href="/#/messageCenter" title="消息中心"><i></i></a></li>
+				<li class="gtMessage" style="width: auto;" ng-if="status == 'in'"><a href="/user/center.html#/message" onclick="reopen()" title="消息中心"><i></i></a></li>
 				<li ng-if="status == 'in'"><a href="" ng-click="logout()">退出</a></li>
 				
 			</ol>

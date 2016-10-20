@@ -745,8 +745,8 @@ moduleI.config(["$provide", "$httpProvider", "$stateProvider", "$validationProvi
     $validationProvider.setExpression(_extendsExpression).setDefaultMsg(_extendsValidMsg);
 }]);
 // 单页面响应点击重读事件
-function reopen() {
-	window.location.href = $(this).attr("href") || window.location.href;
+function reopen(obj) {
+	window.location.href = $(obj || this).attr("href") || window.location.href;
 }
 moduleI.run(["$rootScope", "$state", "$location", "$document", "$animate", "$modal", "$alert", "$window", "$http", "$q", "$timeout",function($rootScope, $state, $location, $document, $animate, $modal, $alert, $window, $http, $q, $timeout) {
     
@@ -1125,3 +1125,20 @@ moduleI.filter('formatUrl', function() {
     }
 });
 
+moduleI.filter('mask', function() {
+    return function(content) {
+        if (!content) {
+            return content;
+        }
+		if (content.match(/^\d+$/g)) {
+			if (content.length > 4) {
+				content = content.substr(0, 2) + "****" + content.substr(4);
+			} else {
+				content = content.substr(0, 2) + "****";
+			}
+		} else {
+			content = content.replace(/^(..)([^@]+)(@.+)/gi, "$1****$3");
+		}
+		return content;
+    }
+});

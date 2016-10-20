@@ -27,25 +27,118 @@
         </ul>
     </div>
     <div class="content" style="overflow: hidden;">
-	<div data-ng-include="'/common/template/t_menu.html'"> </div>
-	<div class="cont_wrapper">
-        <div class="cont_right">
-			<div class="content_duijie" style="display: none;">
-				<div class="duijie_box" style="min-height: 800px; background-color: #FFFFFF;">
-					<div class="stat_count" id="statistics">
-						<div class="stat_radar" id="radarmap" style="height:300px;width: 600px;margin: 0 auto;"></div>
-						<ul>
-							<li><img alt="" src=""><p>人脉：<b class="people_count"></b></p></li>
-							<li><img alt="" src=""><p>组织：<b class="organ_count"></b></p></li>
-							<li><img alt="" src=""><p>知识：<b class="knowledge_count"></b></p></li>
-							<li><img alt="" src=""><p>需求：<b class="demand_count"></b></p></li>
-						</ul>
-					</div>
-					
-					<div class="stat_count" id="statistics">
-					<!--<div class="stat_pie" id="piemap" style="height:300px;width: 600px;margin: 0 auto;"></div>-->
+		<div data-ng-include="'/common/template/t_menu.html'"> </div>
+		<div class="cont_wrapper">
+			<div class="cont_right" ng-if='action == "account"'>
+				<div class="cr_header"><h4 class="caozuo">账户概览</h4></div>
+				<div class="center_list">
+					<div class="header"><div class="head_left col-md-12">
+						<div class="headImg"><img width="60" height="60" src="/common/img/default.jpeg" alt=""></div>
+						<div>
+							<div class="pull-left">
+								<h4 class="padding-v5 padding-h15">手机号码：{{userData.mobile | mask }}<i></i></h4>
+								<h4 class="padding-v5 padding-h15">邮箱地址：{{userData.email | mask }}<i></i></h4>
+							</div>
+							<div class="pull-left">
+								<h4 class="padding-v5 padding-h15"><span class="text-success" ng-if="userData.mobile_validate">已验证</span><span class="text-danger" ng-if="!userData.mobile_validate">未验证</span></h4>
+								<h4 class="padding-v5 padding-h15"><span class="text-success" ng-if="userData.email_validate">已验证</span><span class="text-danger" ng-if="!userData.email_validate">未验证</span></h4>
+							</div>
+						</div>
+					</div></div>
+					<div class="cr_header" ng-if="!userData.validate"><h4 class="caozuo">  </h4></div>
+					<div class="header" ng-if="!userData.validate">
+						您暂时还没有认证为服务商，不能发布服务。<a class="btn btn-info " ng-click="go('vendor')"> 我要申请服务商&gt;&gt; </a>
 					</div>
 				</div>
 			</div>
-	</div></div>
-</div></div>
+			<div class="cont_right" ng-if='action == "vendor"'>
+				<div class="cr_header"><h4 class="caozuo">服务商认证</h4></div>
+				<div class="center_list">
+					<div class="header"><div class="head_left col-md-12">
+						<div class="headImg"><img width="60" height="60" src="/common/img/default.jpeg" alt=""></div>
+						<div>
+							<div class="pull-left">
+								<h4 class="padding-v5 padding-h15">手机号码：{{userData.mobile | mask }}<i></i></h4>
+								<h4 class="padding-v5 padding-h15">邮箱地址：{{userData.email | mask }}<i></i></h4>
+							</div>
+							<div class="pull-left">
+								<h4 class="padding-v5 padding-h15"><span class="text-success" ng-if="userData.mobile_validate">已验证</span><span class="text-danger" ng-if="!userData.mobile_validate">未验证</span></h4>
+								<h4 class="padding-v5 padding-h15"><span class="text-success" ng-if="userData.email_validate">已验证</span><span class="text-danger" ng-if="!userData.email_validate">未验证</span></h4>
+							</div>
+						</div>
+					</div></div>
+					<div class="cr_header" ng-if="!userData.validate"><h4 class="caozuo">  </h4></div>
+					<div class="header" ng-if="!userData.validate">
+						您暂时还没有认证为服务商，不能发布服务。<a class="btn btn-info " ng-click="go('vendor')"> 我要申请服务商&gt;&gt; </a>
+					</div>
+				</div>
+			</div>
+			<div class="cont_right" ng-if='action == "password"'>
+				<div class="cr_header"><h4 class="caozuo">修改密码</h4></div>
+				<div class="center_list"> 
+					<div ><div class="col-md-6">
+						<form name="pwdForm" class='form form-horizontal form-validation padding30' ng-valid ng-invalid ng-submit="resetPwd()">
+							<div class="form-body">
+								<div class='form-group row-validator'>
+									<div class='controls '>
+										<input type='password' class='form-control icon-in icon-in-password' name="oldpassword" ng-model="user.oldpassword"
+											   validator="password,required" password-error-message="密码必须是6-20位字母、数字以及特殊符号的组合！" required-error-message="请输入密码" valid-method="submit" title="密码" placeholder="当前密码">
+									</div>
+								</div>
+								
+								<div class='form-group row-validator'>
+									<div class='controls '>
+										<input type='password' class='form-control icon-in icon-in-password' name="password" ng-model="user.password"
+											   validator="password,required" password-error-message="密码必须是6-20位字母、数字以及特殊符号的组合！" required-error-message="请输入密码" valid-method="submit" title="密码" placeholder="新密码">
+									</div>
+								</div>
+								
+								<div class='form-group row-validator'>
+									<div class='controls '>
+										<input type='password' class='form-control icon-in icon-in-password' name="password2" ng-model="user.password2" placeholder="请再次输入密码"
+											   validator="equal" equal='{{user.password}}' equal-error-message="两次输入的密码不匹配" valid-method="blur" title="请再次输入密码" placeholder="再次输入新密码">
+									</div>
+								</div>
+							</div>
+
+							<div class='form-actions margin-top-20' >
+								<div class="row">
+								<button type="submit"class='btn btn-lg btn-action col-md-4 pull-right ' validation-submit="pwdForm" ng-click="resetPwd()"> 提交 </button>
+								</div>
+							</div>
+						</form>
+					</div></div>
+				</div>
+			</div>
+			<div class="cont_right" ng-if='action == "message"'>
+				<div class="cr_header"><h4 class="caozuo">消息管理</h4></div>
+				<div class="center_list">
+					<div class="padding30"><div class="head_left col-md-9">
+						<table class="table table-bordered">
+							  <thead>
+								<tr class="active">
+								  <th>消息内容</th>
+								  <th>时间</th>
+								</tr>
+							  </thead>
+							  <tbody>
+								<tr>
+								  <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida</td>
+								  <td>2016-09-30 12:40:38</td>
+								</tr>
+								<tr>
+								  <td>@TwBootstrap</td>
+								  <td>2016-09-30 12:40:38</td>
+								</tr>
+								<tr>
+								  <td>Thornton</td>
+								  <td>2016-09-30 12:40:38</td>
+								</tr>
+							  </tbody>
+							</table>
+					</div></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -8,6 +8,7 @@ moduleI.config(['$stateProvider',function($stateProvider) {
 	
 	// var ctrl = (location.pathname.indexOf("/register.html") > -1) ? 'RegisterCtrl' : 'LoginCtrl';
 	if (location.pathname.indexOf("/center.html") > -1) {
+	//	$stateProvider.state('message', mapping("/message", 'MessageCtrl', "t_center"));
 		$stateProvider.state('center', mapping("{action:[^\?]*}", 'CenterCtrl', "t_center"));
 	} else {
 		$stateProvider.state('default', mapping("?id", 'LoginCtrl', "t_login"));
@@ -16,7 +17,7 @@ moduleI.config(['$stateProvider',function($stateProvider) {
 }]);
 
 moduleC.controller('CenterCtrl', ['$location','$rootScope', '$scope', '$state','$stateParams', '$timeout', 'User', 'Code', function($location, $rootScope, $scope, $state,$stateParams, $timeout, User, Code) {
-	$scope.action = "login";
+	$scope.action = ($stateParams.action || "/account").substr(1).toLowerCase();
 	$scope.step = 0;
 	$scope.vcode = {};
 	$scope.user	= {};
@@ -24,9 +25,26 @@ moduleC.controller('CenterCtrl', ['$location','$rootScope', '$scope', '$state','
     $scope.id = $stateParams.id || "";
 	$scope.images = null; 
 	$scope.hint = "";
-	$scope.menu = "account";
-	document.title = "账户概览";
+	$scope.menu = $scope.action;
+	document.title = ($scope.action == "message" ? "消息管理" : "账户管理");
 	
+	if (!$scope.action.match(/^(account|password|vendor|message)$/gi)) {
+		$scope.action = "account";
+		$scope.menu = $scope.action;
+	}
+	
+    // 点击事件，用于切换视图
+    $scope.go = function go(action) {
+        $scope.action = action;
+		$scope.menu = $scope.action;
+    };	
+}]);
+
+moduleC.controller('MessageCtrl', ['$location','$rootScope', '$scope', '$state','$stateParams', '$timeout', 'User', 'Code', function($location, $rootScope, $scope, $state,$stateParams, $timeout, User, Code) {
+	$scope.action = "message";
+	$scope.userData = User.getUserData(); //获取缓存的登录信息
+	$scope.menu = $scope.action;
+	document.title = "消息管理";
 	
 }]);
 
