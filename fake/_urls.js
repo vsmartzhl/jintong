@@ -24,21 +24,26 @@ module.exports = {
 	get: function(url, method) { 
 		method = method || "";
 		
+		if (url.indexOf("/fake/") > -1) {
+			return url;
+		}
+		
 		switch(method.toLowerCase()) {
 			case "put":
-				fake = "/fake/put.json";
+				url = "/fake/put.json";
 			break;
 			case "post":
-				fake = "/fake/post.json";
+//				url = "/fake/post.json";
 			break;
 			case "delete":
-				fake = "/fake/delete.json";
+				url = "/fake/delete.json";
 			break;
 			default:
 			break;
 		}
-		if (fake.indexOf("/fake/") > -1) {
-			return fake;
+		if (url.indexOf("/fake/") > -1) {
+			console.log(" to " + url);
+			return url;
 		}
 		
 		var key = url.split("?")[0].split("/");
@@ -49,6 +54,7 @@ module.exports = {
 			key = "/" + key[1];
 		}
 		if (key == "/") {
+			console.log(" to /index.html");
 			return "/index.html";
 		}
 		

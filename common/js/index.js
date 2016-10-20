@@ -864,16 +864,16 @@ moduleI.run(["$rootScope", "$state", "$location", "$document", "$animate", "$mod
     }
 	
     $rootScope.sendGet = function sendGet(url, json, success, error, retried) {
-        return sendHttpRequest("GET", url, json, , success, error, retried);
+        return sendHttpRequest("GET", url, json, success, error, retried);
     };
     $rootScope.sendPost = function sendPost(url, json, success, error, retried) {
-        return sendHttpRequest("POST", url, json, , success, error, retried);
+        return sendHttpRequest("POST", url, json, success, error, retried);
     };
     $rootScope.sendPut = function sendPost(url, json, success, error, retried) {
-        return sendHttpRequest("PUT", url, json, , success, error, retried);
+        return sendHttpRequest("PUT", url, json, success, error, retried);
     };
     $rootScope.sendDelete = function sendPost(url, json, success, error, retried) {
-        return sendHttpRequest("DELETE", url, json, , success, error, retried);
+        return sendHttpRequest("DELETE", url, json, success, error, retried);
     };
 	
 	function sendHttpRequest(method, url, json, success, error, retried) {
