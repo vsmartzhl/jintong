@@ -862,32 +862,43 @@ moduleI.run(["$rootScope", "$state", "$location", "$document", "$animate", "$mod
             }
         });
     }
+	
     $rootScope.sendGet = function sendGet(url, json, success, error, retried) {
-		var warning = true;
-		if ("noalert" in json) {
-			warning = !json.noalert;
-			delete json.noalert;
-		}
-        var config = {"warning": warning, "method": "GET", "url": (url || "/")};
-        var params = "";
-        for (var i in json) {
-            if (i == "$$hashKey") continue;
-            params += "&" + encodeURIComponent(i) + "=" + encodeURIComponent(json[i]);
-        }
-        if (params.length != 0) {
-            config.params = json;
-        }
-        return sendRequest(config, success, error, retried);
+        return sendHttpRequest("GET", url, json, , success, error, retried);
+    };
+    $rootScope.sendPost = function sendPost(url, json, success, error, retried) {
+        return sendHttpRequest("POST", url, json, , success, error, retried);
+    };
+    $rootScope.sendPut = function sendPost(url, json, success, error, retried) {
+        return sendHttpRequest("PUT", url, json, , success, error, retried);
+    };
+    $rootScope.sendDelete = function sendPost(url, json, success, error, retried) {
+        return sendHttpRequest("DELETE", url, json, , success, error, retried);
     };
 	
-    $rootScope.sendPost = function sendPost(url, json, success, error, retried) {
+	function sendHttpRequest(method, url, json, success, error, retried) {
 		var warning = true;
 		if ("noalert" in json) {
 			warning = !json.noalert;
 			delete json.noalert;
 		}
-        return sendRequest({"warning": warning, "method": "POST", "url": (url || "/"), "data": json || {}}, success, error, retried);
-    };
+		method = method || "GET";
+        var config = {"warning": warning, "method": method, "url": (url || "/")};
+		if (method == "GET" || method == "DELETE") {
+			var params = "";
+			for (var i in json) {
+				if (i == "$$hashKey") continue;
+				params += "&" + encodeURIComponent(i) + "=" + encodeURIComponent(json[i]);
+			}
+			if (params.length != 0) {
+				config.params = json;
+			}
+		} else {
+			config.data = json || {};
+		}
+        return sendRequest(config, success, error, retried);
+	}
+	
 	
     $rootScope.refreshFunctions = {};
     $rootScope.addRefreshFunc = function addRefreshFunc(func) {
