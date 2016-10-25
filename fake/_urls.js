@@ -14,6 +14,10 @@ var urlFake = {
 	
 	/* service用 */
 	"/service/list": "fake/service.json", 
+
+	/* product用 */
+	"/product/list": "fake/product.json",
+	"/product/item": "fake/productItem.json",
 	
 	/* 处理结果 */
 	"/result/failed": "fake/failed.json", 

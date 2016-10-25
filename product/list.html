@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<!-- IE=edge表示强制使用IE最新内核，chrome=1表示如果安装了针对IE6/7/8等版本的浏览器插件Google Chrome  -->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>开放平台</title>
+    <link href="/favicon.ico">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<link rel="stylesheet" href="/common/plugin/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/common/plugin/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/common/css/z.css" />
+    <link rel="stylesheet" href="/product/css/z.css" />
+	<!--[if lte IE 9]>
+	<script src="/common/plugin/bootstrap/js/html5shiv.min.js"></script>
+	<script src="/common/plugin/bootstrap/js/respond.min.js"></script>
+	<![endif]-->
+    <script src="/common/plugin/jquery/jquery.min.js"></script>
+    <script src="/common/plugin/jquery/jquery.placeholder.min.js"></script>
+    <script src="/common/plugin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/common/plugin/angular/angular.js"></script>
+    <script src="/common/plugin/angular/angular-sanitize.min.js"></script>
+    <script src="/common/plugin/angular/angular-animate.min.js"></script>
+    <script src="/common/plugin/ionic/js/angular-ui/angular-ui-router.js"></script>
+    <script src="/common/plugin/angular/angular-route.min.js"></script>
+    <script src="/common/plugin/angular/angular-resource.min.js"></script>
+    <script src="/common/plugin/angular-validation/dist/angular-validation.min.js"></script>
+    <script src="/common/plugin/angular-validation/dist/angular-validation-rule.min.js"></script>
+	<script src="/common/plugin/angular-strap-master/dist/angular-strap.min.js"></script>
+	<script src="/common/plugin/angular-strap-master/dist/angular-strap.tpl.min.js"></script>
+</head>
+<body ng-app="starter" animation="slide-left-right-ios7">
+<header style="height: 70px;" data-ng-include="'/common/template/t_header.html'" ></header>
+<div >
+  <div data-ui-view=""></div>
+</div>
+<!-- your app's js -->
+<script src="/common/js/index.js"></script>
+<script src="/common/js/controllers.js"></script>
+<script src="/service/js/service.js"></script>
+<footer data-ng-include="'/common/template/t_footer.html'"> </footer>
+
+    <script src="/common/plugin/encode/base64.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<div id="site-content" class="site-content container"><div class="wrapper_content">
+	<div class="">
+		<div class="row" style="background-color: white; margin: 0; padding: 20px 0;">
+		  <div class="col-md-4">
+			<a class="navbar-brand" href="/" onclick="reopen()"><img class="fa" src="/common/img/logo.png" style="width: auto; height: 24px;"></a>
+		  </div>
+		  <div class="col-md-8 padding-v15">
+			<div class="input-group">
+				<input type='text' class='form-control' name="search" ng-model="user.search" placeholder="服务">
+				<span class="input-group-btn">
+				<button class="btn btn-primary" style="width: 120px;" type="button" onclick="javascript:decodeTS()"> 搜索 </button>
+			  </span>
+			  <span class="input-group-btn" style="padding-left: 60px;">
+				<button class="btn btn-action" type="button" onclick="javascript:encodeTS()">创建服务</button>
+			  </span>
+			</div>
+		  </div>
+		</div>
+	</div>
+		
+    <div class="nav">
+        <ul style="padding-left: 210px;">
+			<li class="active" href="/service/list.html" onclick="reopen()">数据商城</li>
+			<li class="" href="/service/list.html" onclick="reopen()">云服务</li>
+			<li class="" href="/service/list.html" onclick="reopen()">计算服务</li>
+			<li class="" href="/service/list.html" onclick="reopen()">解决方案</li>
+        </ul>
+    </div>
+    <div class="content" style="overflow: hidden;">
+		<div data-ng-include="'/common/template/t_menu.html'"> </div>
+		<div class="cont_wrapper" style="width:930px">			
+			<div class="cont_right">
+				<div class="cr_header"><h4 class="caozuo">售出明细</h4></div>
+				<div class="center_list col-md-12">
+					<table class="table table-bordered text-center margin-v15">
+						<tr>
+							<th class="col-md-2 text-center">服务名称</th>
+							<th class="col-md-2 text-center">购买用户</th>
+							<th class="col-md-2 text-center">购买时间</th>
+							<th class="col-md-2 text-center">购买金额</th>
+							<th class="col-md-2 text-center">服务类型</th>
+							<th class="col-md-2 text-center">服务状态</th>
+						</tr>
+						<tr ng-repeat="item in item">
+							<td>{{item.name}}</td>
+							<td>{{item.buyer}}</td>
+							<td>{{item.buyTime}}</td>
+							<td>{{item.buyTotal}}</td>
+							<td>{{item.type}}</td>
+							<td>{{item.status}}</td>		
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
